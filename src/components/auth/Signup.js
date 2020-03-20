@@ -1,4 +1,5 @@
 import React, {useState , useContext} from 'react'
+import {Link} from "react-router-dom";
 import AuthService from "./auth-service";
 import MyContext from "../../context";
 const Signup = props=>{
@@ -41,6 +42,10 @@ const Signup = props=>{
 
                 <button type="submit"> Signup</button>
             </form>
+            <p>Already have account?
+                <Link to={"/login"}>Login</Link>
+            </p>
+
         </div>
     )
 

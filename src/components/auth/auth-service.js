@@ -17,14 +17,3 @@ class AuthService{
 }
 export default AuthService
 
-/*
- async const authentication = () =>{
-   try{
-       const res = await fetch('http:localhost:5000/api')
-       const service = res.json();
-       console.log(service)
-   } catch{
-        throw new Error();
-   }
-};
-export {authentication}*/

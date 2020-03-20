@@ -10,19 +10,19 @@ const CoinsList = () => {
         const res = await fetch(url);
 
         const data = await res.json();
-        console.log(data);
         setCoins(data);
     };
     useEffect(  () =>{
               fetchCoins()
 
     });
-
+    const size= 10;
+    
     return(
         <div>
             <h1>Available cryptocurrencies </h1>
             {
-                coins.map( (coin, index ) =>{
+                coins.slice(0,size).map( (coin, index ) =>{
 
                             return(
 

@@ -8,9 +8,10 @@ import Nav from "./components/nav/Nav";
 import SignUp from './components/auth/Signup'
 import CoinsList from "./components/coinsList/CoinsList";
 import CoinDetail from "./components/coinDetail/CoinDetail";
+import LogIn from "./components/auth/LogIn"
 import AuthService from "./components/auth/auth-service";
 import MyContext from "./context";
-
+import ProtectedRoute from "./components/auth/protected-route";
 const App = props => {
     const [user , setUser] = useState(null);
     const service = new AuthService();
@@ -19,12 +20,14 @@ const App = props => {
         if(user === null){
             service.loggedin()
                 .then(response =>{
+                    console.log(response)
                     setUser(response)
                 })
                 .catch( e => setUser(null))
         }
     };
 
+    fetchUser();
 
   return (
       <MyContext.Provider value={{user: user , updateContext: setUser}}>
@@ -33,11 +36,12 @@ const App = props => {
               <Nav/>
               <Switch>
                   <Fragment>
-                      <Route exact path="/signup" component={SignUp}/>
+                      <Route exact path='/signup' render={() => <SignUp/>}/>
+                      <Route exact path='/' render={() => <LogIn/>}/>
                   </Fragment>
-                  <Route exact path="/" component={CoinsList}/>
+                  <ProtectedRoute path='/:id' component={CoinDetail} />
+                  <ProtectedRoute path='/coinList' component={CoinsList} />
 
-                  <Route exact path="/:id" component={CoinDetail}/>
               </Switch>
             </div>
 

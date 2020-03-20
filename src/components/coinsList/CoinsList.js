@@ -4,25 +4,17 @@ require('dotenv').config();
 const CoinsList = () => {
     const [coins, setCoins] = useState([]);
 
-    const url=process.env.API_URL;
+    const url=`https://api.coinpaprika.com/v1/coins`;
 
     const fetchCoins = async () =>{
-        const res = await fetch(url, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                "content-type": "application/json",
-                'x-coinapi-key': process.env.API_SECRET
-            }
-
-        });
+        const res = await fetch(url);
 
         const data = await res.json();
         console.log(data);
         setCoins(data);
     };
     useEffect(  () =>{
-          fetchCoins();
+              fetchCoins()
 
     });
 
@@ -35,13 +27,17 @@ const CoinsList = () => {
                             return(
 
                                 <CoinItem
-                                    key ={`crypto-${index}`}
+                                    key ={coin.id}
+                                    id={coin.id}
                                     name={coin.name}
-                                    type={coin.type_is_crypto}
-
+                                    symbol={coin.symbol}
+                                    type ={coin.type}
                                 />
 
                             )
+
+
+
 
                 })
             }

@@ -1,10 +1,15 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom'
 const CoinItem = props =>{
     return(
         <div>
             <h2>{props.name}</h2>
-            <p>{props.type ? 'It is a crypto' : 'It not a crypto'}</p>
+            <p>Symbol : {props.symbol}</p>
+            <p> Type: {props.type }</p>
+            <Link to={`/${props.id}`}>
+                <button>See details</button>
+            </Link>
+
         </div>
     )
 };

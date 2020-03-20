@@ -4,14 +4,19 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import 'bulma/css/bulma.css'
 
-import SignUp from './components/auth/Signup'
 import Nav from "./components/nav/Nav";
+import SignUp from './components/auth/Signup'
+import CoinsList from "./components/coinsList/CoinsList";
 function App() {
   return (
       <Router>
         <div className="App">
           <Nav/>
-          <Route exact path="/signup" component={SignUp}/>
+          <Switch>
+              <Route exact path="/" component={CoinsList}/>
+              <Route exact path="/signup" component={SignUp}/>
+
+          </Switch>
         </div>
 
       </Router>

@@ -15,7 +15,7 @@ const CoinsList = () => {
     useEffect(  () =>{
               fetchCoins()
 
-    });
+    }, []);
     const size= 10;
     
     return(

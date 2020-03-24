@@ -25,8 +25,6 @@ const CoinDetail  = props =>{
             <p>{coinDetail.description}</p>
             <p>Is open source: {coinDetail.ope_source ? 'Yes' : 'No'}</p>
 
-
-
         </div>
     )
 };

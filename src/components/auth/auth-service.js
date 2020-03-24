@@ -3,7 +3,7 @@ import axios from 'axios';
 class AuthService{
     constructor(){
         let service = axios.create({
-            baseURL :'https://crypo-wallet-server.herokuapp.com/api',
+            baseURL :'http://localhost:5000/api',
             withCredentials: true
         });
         this.service = service;
@@ -20,8 +20,9 @@ class AuthService{
     };
 
     login = (username, password) => {
+
         return this.service.post('/login', {username, password})
-            .then(response => response.data)
+            .then(response => console.log(response.data.code))
     };
 
 

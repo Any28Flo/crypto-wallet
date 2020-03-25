@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
-//import MyContext from '../../context';
-import {UserContext} from "../../App";
+//import {UserContext} from "../../App";
 
 const LogIn = props => {
-    const userContext =  useContext();
-    console.log(userContext)
+  //  const userContext =  useContext();
+    //console.log(userContext)
 
     const [ formState, updateFormState ] = useState (
         { username: '', password: '' }

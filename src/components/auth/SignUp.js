@@ -18,15 +18,16 @@ const SignUp = () => {
         const email = formState.email;
         const image = formState.image;
 
-        service.signup(username, password)
+        service.signup(username, password, email, image)
             .then( response => {
+                console.log(response);
                 updateFormState({
                     username: "",
                     password: "",
                     email: "",
                     image: ""
                 });
-                updateUser(response)
+                //updateUser(response)
             })
             .catch( error => console.log(error) )
     };

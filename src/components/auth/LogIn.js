@@ -8,7 +8,7 @@ const LogIn = props => {
     //console.log(userContext)
 
     const [ formState, updateFormState ] = useState (
-        { username: '', password: '' }
+        { email: '', password: '' }
     );
     const service = new AuthService();
 
@@ -16,12 +16,16 @@ const LogIn = props => {
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        const username = formState.username;
+        const email = formState.email;
         const password = formState.password;
-        service.login(username, password)
+        service.signin(email, password)
             .then( response => {
-                updateFormState({ username: "", password: "" });
-//                updateUser(response)
+                updateFormState({ email: "", password: "" });
+                console.log(response);
+
+                  if(response.status === 200){
+                      console.log("Welcome to the club");
+                  }
             })
             .catch( error => console.log(error) )
     };
@@ -29,13 +33,13 @@ const LogIn = props => {
     const handleChange = (event) => {
         const {name, value} = event.target;
         updateFormState(Object.assign({}, formState, {[name]: value}));
-    }
+    };
 
     return(
         <div>
             <form onSubmit={handleFormSubmit}>
-                <label>Username:</label>
-                <input type="text" name="username" value={formState.username} onChange={ e => handleChange(e)}/>
+                <label>Email:</label>
+                <input type="email" name="email" value={formState.email} onChange={ e => handleChange(e)}/>
                 <label>Password:</label>
                 <input type="password" name="password" value={formState.password} onChange={ e => handleChange(e)} />
 

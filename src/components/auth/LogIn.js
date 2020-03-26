@@ -4,8 +4,10 @@ import { useHistory,Link } from 'react-router-dom';
 import {userContext} from "./../../App";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-const LogIn = props => {
-    const MySwal = withReactContent(Swal)
+
+const LogIn = () => {
+
+    const MySwal = withReactContent(Swal);
     const history = useHistory();
     const {setUser} =  useContext(userContext);
 
@@ -22,7 +24,6 @@ const LogIn = props => {
         service.signin(email, password)
             .then( response => {
                 updateFormState({ email: "", password: "" });
-                console.log(response);
 
                   if(response.status === 200){
                       setUser(response.data);
@@ -31,11 +32,11 @@ const LogIn = props => {
             })
             .catch( error => {
                 updateFormState({ email: "", password: "" });
-                console.log(error);
+
                 MySwal.fire({
                     icon: 'error',
                     title :'Oops...',
-                    text : 'Something went wrong!',
+                    text : 'Error logging in please try again'
                     
                 })
             } )
@@ -54,7 +55,6 @@ const LogIn = props => {
                 <input type="email" name="email" value={formState.email} onChange={ e => handleChange(e)}/>
                 <label>Password:</label>
                 <input type="password" name="password" value={formState.password} onChange={ e => handleChange(e)} />
-
                 <input type="submit" value="Login" />
             </form>
             <p>Don't have account?

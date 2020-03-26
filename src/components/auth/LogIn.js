@@ -1,18 +1,19 @@
 import React, { useState, useContext } from 'react';
 import AuthService from './auth-service';
-import { Link } from 'react-router-dom';
-//import {UserContext} from "../../App";
-
+import { useHistory,Link } from 'react-router-dom';
+import {userContext} from "./../../App";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const LogIn = props => {
-  //  const userContext =  useContext();
-    //console.log(userContext)
+    const MySwal = withReactContent(Swal)
+    const history = useHistory();
+    const {setUser} =  useContext(userContext);
+
 
     const [ formState, updateFormState ] = useState (
         { email: '', password: '' }
     );
     const service = new AuthService();
-
-    // const { updateUser } = useContext(MyContext);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -24,10 +25,20 @@ const LogIn = props => {
                 console.log(response);
 
                   if(response.status === 200){
-                      console.log("Welcome to the club");
+                      setUser(response.data);
+                      history.push("/userBoard")
                   }
             })
-            .catch( error => console.log(error) )
+            .catch( error => {
+                updateFormState({ email: "", password: "" });
+                console.log(error);
+                MySwal.fire({
+                    icon: 'error',
+                    title :'Oops...',
+                    text : 'Something went wrong!',
+                    
+                })
+            } )
     };
 
     const handleChange = (event) => {
@@ -36,6 +47,7 @@ const LogIn = props => {
     };
 
     return(
+
         <div>
             <form onSubmit={handleFormSubmit}>
                 <label>Email:</label>

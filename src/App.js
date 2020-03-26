@@ -1,4 +1,4 @@
-import React, {useState, Fragment, useContext} from 'react';
+import React, { createContext, useState} from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import 'bulma/css/bulma.css'
@@ -7,17 +7,15 @@ import Nav from "./components/nav/Nav";
 import SignUp from './components/auth/SignUp'
 import CoinsList from "./components/coinsList/CoinsList";
 import CoinDetail from "./components/coinDetail/CoinDetail";
-import LogIn from "./components/auth/LogIn"
-import AuthService from "./components/auth/auth-service";
-import ProtectedRoute from './components/auth/protected-route';
-//import MyContext from './context'
-// const UserContext = useContext();
+import LogIn from "./components/auth/LogIn";
+import UserBoard from "./userBoard/UserBoard";
+ export const userContext = createContext({ user: null , setUser : () => {}});
 
 const App = props => {
-    const [user , setUser] = useState(null);
+    const [newUser , updateUser] = useState(null);
 
     return (
-       // <UserContext.Provider value={{user: user , setUser}}>
+        <userContext.Provider value={{user: newUser , setUser : updateUser}}>
             <div className="App">
                 <Nav/>
                 <Switch>
@@ -25,10 +23,11 @@ const App = props => {
                         <Route exact path='/signup' render={() => <SignUp/>}/>
                         <Route exact path='/' render={() => <LogIn/>}/>
                     <Route path='/coinsList' component={CoinsList} />
-                    <Route path='/coinsList:id' component={CoinDetail} />
+                    <Route path='/:id' component={CoinDetail} />
+                    <Route path='/userBoard' component={UserBoard}/>
                 </Switch>
             </div>
-       // </UserContext.Provider>
+        </userContext.Provider>
     );
 };
 

@@ -3,8 +3,11 @@ import React, { useState, useContext } from 'react';
 import AuthService from './auth-service';
 import { Link } from 'react-router-dom';
 import MyContext from '../../context';
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 const SignUp = () => {
+
+    const MySwal = withReactContent(Swal)
 
     const [ formState, updateFormState ] = useState({ username: '', password: '', email : '' ,image : '' });
     const service = new AuthService();
@@ -29,7 +32,20 @@ const SignUp = () => {
                 });
                 //updateUser(response)
             })
-            .catch( error => console.log(error) )
+            .catch( error => {
+                console.log(error);
+                MySwal.fire({
+                    title: <p>Hello World</p>,
+                    footer: 'Copyright 2018',
+                    onOpen: () => {
+                        // `MySwal` is a subclass of `Swal`
+                        //   with all the same instance & static methods
+                        MySwal.clickConfirm()
+                    }
+                }).then(() => {
+                    return MySwal.fire(<p>Shorthand works too</p>)
+                })
+            } )
     };
 
     const handleChange = (event) => {

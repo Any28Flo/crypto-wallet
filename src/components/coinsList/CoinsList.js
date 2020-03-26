@@ -1,6 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import CoinItem from "./CoinItem";
-require('dotenv').config();
+import LazyLoad from 'react-lazyload'
+const Loading = () =>(
+    <div className=" coin loading">
+        <h5>Loading</h5>
+    </div>
+);
 const CoinsList = () => {
     const [coins, setCoins] = useState([]);
 
@@ -13,34 +18,32 @@ const CoinsList = () => {
         setCoins(data);
     };
     useEffect(  () =>{
-              fetchCoins()
+        fetchCoins()
 
     }, []);
-    const size= 10;
-    
+
+
     return(
         <div>
             <h1>Available cryptocurrencies </h1>
             {
-                coins.slice(0,size).map( (coin, index ) =>{
+                coins.map( (coin, index ) =>{
 
-                            return(
-
-                                <CoinItem
-                                    key ={coin.id}
-                                    id={coin.id}
-                                    name={coin.name}
-                                    symbol={coin.symbol}
-                                    type ={coin.type}
-                                />
-
-                            )
-
-
-
+                    return(
+                        <LazyLoad key ={coin.id} placeholder={<Loading/>}>
+                            <CoinItem
+                                key ={coin.id}
+                                id={coin.id}
+                                name={coin.name}
+                                symbol={coin.symbol}
+                                type ={coin.type}
+                            />
+                        </LazyLoad>
+                )
 
                 })
             }
+
         </div>
     )
 };

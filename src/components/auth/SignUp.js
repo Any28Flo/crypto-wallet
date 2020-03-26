@@ -1,18 +1,18 @@
 
 import React, { useState, useContext } from 'react';
 import AuthService from './auth-service';
-import { Link } from 'react-router-dom';
-import MyContext from '../../context';
+import { Link, useHistory } from 'react-router-dom';
+import {userContext} from "./../../App";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 const SignUp = () => {
 
     const MySwal = withReactContent(Swal)
-
+    const history = useHistory();
     const [ formState, updateFormState ] = useState({ username: '', password: '', email : '' ,image : '' });
     const service = new AuthService();
 
-    const { updateUser } = useContext(MyContext);
+    const { setUser } = useContext(userContext);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -22,29 +22,27 @@ const SignUp = () => {
         const image = formState.image;
 
         service.signup(username, password, email, image)
+
             .then( response => {
-                console.log(response);
-                updateFormState({
-                    username: "",
-                    password: "",
-                    email: "",
-                    image: ""
-                });
-                //updateUser(response)
+                if(response.status === 200){
+                    setUser(response);
+                    history.push('/userBoard');
+                    updateFormState({
+                        username: "",
+                        password: "",
+                        email: "",
+                        image: ""
+                    });
+                }
             })
             .catch( error => {
-                console.log(error);
                 MySwal.fire({
-                    title: <p>Hello World</p>,
-                    footer: 'Copyright 2018',
-                    onOpen: () => {
-                        // `MySwal` is a subclass of `Swal`
-                        //   with all the same instance & static methods
-                        MySwal.clickConfirm()
-                    }
-                }).then(() => {
-                    return MySwal.fire(<p>Shorthand works too</p>)
+                    icon: 'error',
+                    title :'Oops...',
+                    text : 'Error sign up  in please try again'
+
                 })
+
             } )
     };
 

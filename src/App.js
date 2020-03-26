@@ -8,7 +8,7 @@ import SignUp from './components/auth/SignUp'
 import CoinsList from "./components/coinsList/CoinsList";
 import CoinDetail from "./components/coinDetail/CoinDetail";
 import LogIn from "./components/auth/LogIn";
-import UserBoard from "./userBoard/UserBoard";
+import UserBoard from "./components/userBoard/UserBoard";
  export const userContext = createContext({ user: null , setUser : () => {}});
 
 const App = props => {
@@ -20,11 +20,11 @@ const App = props => {
                 <Nav/>
                 <Switch>
 
-                        <Route exact path='/signup' render={() => <SignUp/>}/>
-                        <Route exact path='/' render={() => <LogIn/>}/>
-                    <Route path='/coinsList' component={CoinsList} />
-                    <Route path='/:id' component={CoinDetail} />
-                    <Route path='/userBoard' component={UserBoard}/>
+                    <Route exact path='/signup' render={() => <SignUp/>}/>
+                    <Route exact path='/login' render={() => <LogIn/>}/>
+                    <Route exact path='/coinsList' component={CoinsList} />
+                    <Route exact path='/:id' component={CoinDetail} />
+                    <Route exact path='/' render={ ()=> <UserBoard user={newUser}/> }/>}/>
                 </Switch>
             </div>
         </userContext.Provider>

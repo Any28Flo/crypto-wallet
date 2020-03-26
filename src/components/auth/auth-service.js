@@ -11,7 +11,7 @@ class AuthService{
 
     signup = (username, password, email, image) => {
         return this.service.post('/signup', {username, password, email, image})
-            .then(response => response.data)
+            .then(response => response)
     };
 
     loggedin = () => {

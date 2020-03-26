@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react';
 import AuthService from './auth-service';
-import { useHistory,Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {userContext} from "./../../App";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-const LogIn = () => {
+const LogIn = (props) => {
 
     const MySwal = withReactContent(Swal);
     const history = useHistory();
@@ -23,14 +23,17 @@ const LogIn = () => {
         const password = formState.password;
         service.signin(email, password)
             .then( response => {
-                updateFormState({ email: "", password: "" });
 
-                  if(response.status === 200){
-                      setUser(response.data);
-                      history.push("/userBoard")
+
+                if(response.status === 200){
+
+                    setUser(response.data.user);
+                    history.push("/");
+                    updateFormState({ email: "", password: "" });
                   }
             })
             .catch( error => {
+
                 updateFormState({ email: "", password: "" });
 
                 MySwal.fire({

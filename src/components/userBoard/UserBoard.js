@@ -8,7 +8,6 @@ const UserBoard = (props) =>{
             <p>Welcome {props.user.username}</p>
             <p>Create your first wallet</p>
             <p>Actual price coins</p>
-
         </div>
     )
 };

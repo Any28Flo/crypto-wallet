@@ -9,6 +9,9 @@ const CoinItem = props =>{
             <Link to={`/${props.id}`}>
                 <button>See details</button>
             </Link>
+            {
+                console.log(props.image[0].url )
+            }
 
         </div>
     )

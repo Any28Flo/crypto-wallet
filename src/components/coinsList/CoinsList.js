@@ -24,13 +24,13 @@ const CoinsList = () => {
 
     const fetchCoins = async () =>{
         const res = await fetch(url);
-        await fetchImages();
-
+          await fetchImages();
         const data = await res.json();
         setCoins(data);
+
     };
     useEffect(  () =>{
-        fetchCoins()
+        fetchCoins();
 
     }, []);
 
@@ -40,14 +40,35 @@ const CoinsList = () => {
             return image.asset_id === imageSearch
         })
     };
+    const assignImage = ()=>{
+        coins.map((coin, index) =>{
+            let coinImage = searchImage(coin.symbol);
 
+            if(coinImage[0] === undefined){
+                coin.image = undefined;
+                console.log('undefined')
+
+            }else{
+                coin.image=coinImage[0].url;
+                console.log(coinImage[0].url)
+            }
+
+
+
+        /*  if( typeof (coinImage[0].url) === undefined){
+
+          }*/
+
+        })
+    };
+
+assignImage();
     return(
         <div>
 
             <h1>Available cryptocurrencies </h1>
             {
                 coins.map( (coin, index ) =>{
-                    let image = (coin.image[0].url === undefined)? 'noImage' : searchImage(coin.symbol);
 
                     return(
                         <LazyLoad key ={coin.id} placeholder={<Loading/>}>
@@ -57,6 +78,7 @@ const CoinsList = () => {
                                 name={coin.name}
                                 symbol={coin.symbol}
                                 type ={coin.type}
+                                image = {coin.image}
 
                             />
                         </LazyLoad>

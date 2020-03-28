@@ -6,7 +6,7 @@ const CoinItem = props =>{
             <h2>{props.name}</h2>
             <p>Symbol : {props.symbol}</p>
             <p> Type: {props.type }</p>
-            <Link to={`/${props.id}`}>
+            <Link to={`/${props.id}`} >
                 <button>See details</button>
             </Link>
             <img src= {props.image} alt=""/>

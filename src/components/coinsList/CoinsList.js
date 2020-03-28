@@ -40,33 +40,26 @@ const CoinsList = () => {
             return image.asset_id === imageSearch
         })
     };
+
     const assignImage = ()=>{
-        coins.map((coin, index) =>{
+        let cryptos =coins.map((coin, index) =>{
             let coinImage = searchImage(coin.symbol);
 
             if(coinImage[0] === undefined){
-                coin.image = undefined;
-                console.log('undefined')
+                return coin.image = undefined;
 
             }else{
-                coin.image=coinImage[0].url;
-                console.log(coinImage[0].url)
-            }
+               return coin.image=coinImage[0].url;
+           }
 
-
-
-        /*  if( typeof (coinImage[0].url) === undefined){
-
-          }*/
-
-        })
+        });
     };
 
 assignImage();
     return(
         <div>
 
-            <h1>Available cryptocurrencies </h1>
+            <h1>Available crypto currencies </h1>
             {
                 coins.map( (coin, index ) =>{
 
@@ -79,6 +72,7 @@ assignImage();
                                 symbol={coin.symbol}
                                 type ={coin.type}
                                 image = {coin.image}
+
 
                             />
                         </LazyLoad>

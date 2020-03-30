@@ -11,8 +11,9 @@ const UserBoard = (props) =>{
 
             <p>Welcome {props.user.username}</p>
             <p>Total: : <span>$150.20</span> </p>
-            <p>Create your first wallet</p>
+            <h2>Create your first wallet</h2>
             <CreateWallet getUser={userData} />
+
 
             <p>Actual price coins</p>
         </div>

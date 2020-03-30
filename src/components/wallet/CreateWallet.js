@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField"
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
 import WalletService from './../../services/wallet-services'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 const CreateWallet = props => {
     const classes = useStyles();
     const walletService = new WalletService();
-
+    const Message = withReactContent(Swal);
     const [formState,  updateFormState] = useState({
          walletName : '',
          description : ''
@@ -34,8 +36,28 @@ const CreateWallet = props => {
          walletService.create(nameWallet ,description,coins ,createdBy)
              .then(response =>{
                  console.log(response);
+                 if(response.status === 200){
+                     Message.fire({
+                         icon: 'success',
+                         title :'Yay!',
+                         text : 'You did it'
+
+                     });
+                    updateFormState({walletName: "", description: ""})
+                 }else{
+                     console.log(response);
+                 }
              })
-             .catch(e =>console.log(e))
+             .catch(e =>{
+                 console.log(e);
+                 updateFormState({walletName: "", description: ""})
+                 Message.fire({
+                     icon: 'error',
+                     title :'Oops...',
+                     text : 'Error creating you new wallet, please try again'
+
+                 })
+             })
 
 
 

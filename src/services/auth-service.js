@@ -14,10 +14,7 @@ class AuthService{
             .then(response => response)
     };
 
-    loggedin = () => {
-        return this.service.get('/loggedin')
-            .then(response => response.data)
-    };
+
 
     signin = (email, password) => {
 
@@ -26,10 +23,6 @@ class AuthService{
     };
 
 
-    logout = () => {
-        return this.service.post('/logout', {})
-            .then(response => response.data)
-    };
 
 
 }

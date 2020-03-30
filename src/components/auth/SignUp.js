@@ -1,13 +1,13 @@
 
 import React, { useState, useContext } from 'react';
-import AuthService from './auth-service';
+import AuthService from '../../services/auth-service';
 import { Link, useHistory } from 'react-router-dom';
 import {userContext} from "./../../App";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 const SignUp = () => {
 
-    const MySwal = withReactContent(Swal)
+    const MySwal = withReactContent(Swal);
     const history = useHistory();
     const [ formState, updateFormState ] = useState({ username: '', password: '', email : '' ,image : '' });
     const service = new AuthService();

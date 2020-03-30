@@ -9,7 +9,7 @@ import CoinsList from "./components/coinsList/CoinsList";
 import CoinDetail from "./components/coinDetail/CoinDetail";
 import LogIn from "./components/auth/LogIn";
 import UserBoard from "./components/userBoard/UserBoard";
- export const userContext = createContext({ user: null , setUser : () => {}});
+export const userContext = createContext({ user: null , setUser : () => {}});
 
 const App = props => {
     const [newUser , updateUser] = useState(null);
@@ -18,8 +18,7 @@ const App = props => {
         <userContext.Provider value={{user: newUser , setUser : updateUser}}>
             <div className="App">
                 <Nav/>
-                <Switch>
-
+                <Switch>/
                     <Route exact path='/signup' render={() => <SignUp/>}/>
                     <Route exact path='/login' render={() => <LogIn/>}/>
                     <Route exact path='/coinsList' component={CoinsList} />

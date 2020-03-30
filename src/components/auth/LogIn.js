@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import AuthService from './auth-service';
+import AuthService from '../../services/auth-service';
 import { Link, useHistory } from 'react-router-dom';
 import {userContext} from "./../../App";
 import Swal from 'sweetalert2'
@@ -24,7 +24,7 @@ const LogIn = (props) => {
         service.signin(email, password)
             .then( response => {
 
-
+                window.localStorage.token =response.data.token;
                 if(response.status === 200){
 
                     setUser(response.data.user);

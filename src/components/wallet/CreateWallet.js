@@ -1,4 +1,5 @@
 import React , {useState} from "react";
+
 import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from "@material-ui/core/TextField"
@@ -44,18 +45,14 @@ const CreateWallet = props => {
 
                      });
                     updateFormState({walletName: "", description: ""})
-                 }else{
-                     console.log(response);
                  }
              })
              .catch(e =>{
-                 console.log(e);
                  updateFormState({walletName: "", description: ""})
                  Message.fire({
                      icon: 'error',
                      title :'Oops...',
                      text : 'Error creating you new wallet, please try again'
-
                  })
              })
 

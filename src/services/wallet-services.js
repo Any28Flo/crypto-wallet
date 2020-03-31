@@ -18,7 +18,10 @@ class WalletService{
         return this.walletService.post('/wallets', {
             walletName, description, coins , createdBy
         })
+    };
 
+    getAll = ( userId)=>{
+        return this.walletService.get('/wallets');
     }
 
 }

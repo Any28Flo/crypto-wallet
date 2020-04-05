@@ -20,8 +20,9 @@ class WalletService{
         })
     };
 
-    getAll = ( userId)=>{
-        return this.walletService.get('/wallets');
+    getAll = ( createdBy)=>{
+        console.log('service'+createdBy);
+        return this.walletService.get('/wallets?createdBy='+createdBy);
     }
 
 }

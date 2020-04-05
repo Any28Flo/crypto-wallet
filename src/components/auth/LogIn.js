@@ -1,4 +1,6 @@
 import React, { useState, useContext } from 'react';
+import {TextField , Button} from '@material-ui/core';
+
 import AuthService from '../../services/auth-service';
 import { Link, useHistory } from 'react-router-dom';
 import {userContext} from "./../../App";
@@ -28,7 +30,7 @@ const LogIn = (props) => {
                 if(response.status === 200){
 
                     setUser(response.data.user);
-                    history.push("/");
+                    history.push("/user-board");
                     updateFormState({ email: "", password: "" });
                   }
             })
@@ -54,11 +56,25 @@ const LogIn = (props) => {
 
         <div>
             <form onSubmit={handleFormSubmit}>
-                <label>Email:</label>
-                <input type="email" name="email" value={formState.email} onChange={ e => handleChange(e)}/>
-                <label>Password:</label>
-                <input type="password" name="password" value={formState.password} onChange={ e => handleChange(e)} />
-                <input type="submit" value="Login" />
+                <TextField
+                    name="email"
+                    label="Email"
+                    type="email"
+                    value={formState.email}
+                    onChange={ e => handleChange(e)}
+                />
+
+                <TextField
+                    name="password"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-password"
+                    value={formState.password}
+                    onChange={ e => handleChange(e)}
+                />
+                <Button variant="contained" type="submit" value="Login">Login</Button>
+
+
             </form>
             <p>Don't have account?
                 <Link to={"/signup"}> Signup</Link>
@@ -66,7 +82,7 @@ const LogIn = (props) => {
         </div>
     )
 
-}
+};
 
 
 export default LogIn;

@@ -5,11 +5,12 @@ const Wallets = props =>{
     const walletService = new WalletService();
 
     const getWallets = () =>{
-        const userId = props.getUser.user._id;
-        console.log(userId);
-        walletService.getAll(userId)
+        const createdBy = props.getUser.user._id;
+        console.log(createdBy);
+        walletService.getAll(createdBy)
             .then(response =>{
-                console.log(response);
+                setWallets(response.data.wallets);
+               
             })
     };
 
@@ -23,6 +24,7 @@ const Wallets = props =>{
             {
                 wallets.map(wallet =>{
                     return(
+
                         <h3>{wallet.name}</h3>
                     )
                 })

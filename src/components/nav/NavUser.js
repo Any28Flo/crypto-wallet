@@ -40,11 +40,7 @@ const Nav = () =>{
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbarMargin} />
-            <ul>
-                {new Array(500).fill(null).map((v, i) => (
-                    <li key={i}>{i}</li>
-                ))}
-            </ul>
+          
         </div>
 
 

@@ -1,12 +1,8 @@
-import React , {Fragment , Component} from 'react'
+import React  from 'react'
 
 import {makeStyles} from "@material-ui/core";
-import {AppBar,Toolbar, Typography, Button, IconButton, Menu , MenuItem} from "@material-ui/core";
+import {AppBar,Toolbar, Typography, Button} from "@material-ui/core";
 
-import {MenuIcon} from "@material-ui/icons"
-
-import {optionsNav} from './optionsNav'
-import NavItem from "./NavItem";
 
 const useStyles = makeStyles((theme) =>({
     root:{

@@ -47,7 +47,7 @@ const App = props => {
                   <Switch>
                       <Route  exact path ='/login' render = {() => <LogIn/>}/>
                       <Route exact path='/user-board' render={ ()=> <UserBoard user={newUser}/> }/>
-                      <Route exact path='/coinsList' component={CoinsList} />
+                      <Route exact path='/all-cryptos' component={CoinsList} />
                   </Switch>
 
               </Container>

@@ -1,5 +1,5 @@
 import React  from 'react'
-
+import {Link} from 'react-router-dom'
 import {makeStyles} from "@material-ui/core";
 import {AppBar,Toolbar, Typography, Button} from "@material-ui/core";
 
@@ -29,6 +29,9 @@ const Nav = () =>{
                     <Typography variant="h6" className={classes.title}>
                         Crypto Wallet
                     </Typography>
+                    <Link to="/login">
+
+                    </Link>
 
                     <Button color="inherit">Login</Button>
                 </Toolbar>

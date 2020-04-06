@@ -1,12 +1,9 @@
-import React , {Fragment , Component} from 'react'
+import React  from 'react'
+import { Link } from 'react-router-dom';
 
 import {makeStyles} from "@material-ui/core";
-import {AppBar,Toolbar, Typography, Button, IconButton, Menu , MenuItem} from "@material-ui/core";
+import {AppBar,Toolbar, Typography, Button} from "@material-ui/core";
 
-import {MenuIcon} from "@material-ui/icons"
-
-import {optionsNav} from './optionsNav'
-import NavItem from "./NavItem";
 
 const useStyles = makeStyles((theme) =>({
     root:{
@@ -33,14 +30,18 @@ const Nav = () =>{
                     <Typography variant="h6" className={classes.title}>
                         Crypto Wallet
                     </Typography>
+                    <Link to="all-cryptos">
+                        <Button color="inherit">All cryptos</Button>
+                    </Link>
+                    <Link to="/user-board">
+                        <Button color="inherit"> My profile</Button>
+                    </Link>
 
-                    <Button color="inherit">All cryptos</Button>
-                    <Button color="inherit"> My profile</Button>
                     <Button color="inherit">My wallets</Button>
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbarMargin} />
-          
+
         </div>
 
 

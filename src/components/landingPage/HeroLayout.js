@@ -1,43 +1,67 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import {Container, Button} from '@material-ui/core'
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+// nodejs library that concatenates classes
+import classNames from "classnames";
+// nodejs library to set properties for components
+import PropTypes from "prop-types";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        padding : "120px"
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
+// core components
+import styles from "./../../assets/jss/material-kit-react/components/parallaxStyle";
 
+const useStyles = makeStyles(styles);
 
-const HeroLayout =  () => {
+export default function HeroLayout(props) {
+    let windowScrollTop;
+    if (window.innerWidth >= 768) {
+        windowScrollTop = window.pageYOffset / 3;
+    } else {
+        windowScrollTop = 0;
+    }
+    const [transform, setTransform] = React.useState(
+        "translate3d(0," + windowScrollTop + "px,0)"
+    );
+    React.useEffect(() => {
+        if (window.innerWidth >= 768) {
+            window.addEventListener("scroll", resetTransform);
+        }
+        return function cleanup() {
+            if (window.innerWidth >= 768) {
+                window.removeEventListener("scroll", resetTransform);
+            }
+        };
+    });
+    const resetTransform = () => {
+        var windowScrollTop = window.pageYOffset / 3;
+        setTransform("translate3d(0," + windowScrollTop + "px,0)");
+    };
+    const { filter, className, children, style, image, small } = props;
     const classes = useStyles();
+    const parallaxClasses = classNames({
+        [classes.parallax]: true,
+        [classes.filter]: filter,
+        [classes.small]: small,
+        [className]: className !== undefined
+    });
+    return (
+        <div
+            className={parallaxClasses}
+            style={{
+                ...style,
+                backgroundImage: "url(" + image + ")",
+                transform: transform
+            }}
+        >
+            {children}
+        </div>
+    );
+}
 
-    return(
-        <Container maxWidth="md">
-            <div className={classes.root}>
-                <Typography variant="h2" gutterBottom>
-                   Crypto Wallet
-                </Typography>
-
-                <Typography variant="p" gutterBottom>
-                    Keep your crytos in one place
-                </Typography>
-                <br/>
-                <Button variant="outlined" color="primary">
-                    Sign Up
-                </Button>
-            </div>
-        </Container>
-    )
-
+HeroLayout.propTypes = {
+    className: PropTypes.string,
+    filter: PropTypes.bool,
+    children: PropTypes.node,
+    style: PropTypes.string,
+    image: PropTypes.string,
+    small: PropTypes.bool
 };
-
-export default HeroLayout

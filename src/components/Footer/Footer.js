@@ -23,7 +23,7 @@ const Footer = ()=>{
                 </Typography>
                 <Copyright />
             </footer>
-            
+
         </div>
     )
 };

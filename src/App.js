@@ -48,6 +48,7 @@ const App = props => {
                       <Route  exact path ='/login' render = {() => <LogIn/>}/>
                       <Route exact path='/user-board' render={ ()=> <UserBoard user={newUser}/> }/>
                       <Route exact path='/all-cryptos' component={CoinsList} />
+                      <Route exact path='/' component={LandingPage}/>
                   </Switch>
 
               </Container>
@@ -59,7 +60,7 @@ const App = props => {
 
 export default App;
 
-//  <Route exact path='/' component={LandingPage}/>
+//
 /*
 
 

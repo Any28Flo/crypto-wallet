@@ -12,16 +12,8 @@ import LogIn from "./components/auth/LogIn";
 import UserBoard from "./components/userBoard/UserBoard";
 import LandingPage from "./components/landingPage/LandingPage";
 import NavUser from "./components/nav/NavUser"
+import Footer from "./components/Footer/Footer";
 export const userContext = createContext({ user: null , setUser : () => {}});
-
-const styles = theme =>({
-    root:{
-        flexGrow :1
-    }
-});
-
-const Container = props => <Grid container {...props}/>;
-const Item = props => <Grid item {...props}/>;
 
 const App = props => {
     const [newUser , updateUser] = useState(null);
@@ -40,18 +32,15 @@ const App = props => {
         <userContext.Provider value={{user: newUser , setUser : updateUser}}>
             <div className="App">
 
-              <Container spacing={0}>
-                  <Item xs={12} sm={12} md={12}>
-                    <NavBar  isLoggedIn = {false}/>
-                  </Item>
+                  <NavBar  isLoggedIn = {false}/>
                   <Switch>
                       <Route  exact path ='/login' render = {() => <LogIn/>}/>
                       <Route exact path='/user-board' render={ ()=> <UserBoard user={newUser}/> }/>
                       <Route exact path='/all-cryptos' component={CoinsList} />
                       <Route exact path='/' component={LandingPage}/>
                   </Switch>
+                <Footer/>
 
-              </Container>
             </div>
         </userContext.Provider>
     );

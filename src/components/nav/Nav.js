@@ -1,9 +1,9 @@
 import React  from 'react'
 import {Link} from 'react-router-dom'
 import {makeStyles} from "@material-ui/core";
-import {AppBar,Toolbar, Typography, Button} from "@material-ui/core";
+import {AppBar,Toolbar, Typography} from "@material-ui/core";
 
-
+import Button from './../CustomButtons/Button'
 const useStyles = makeStyles((theme) =>({
     root:{
         flexGrow : 1
@@ -30,10 +30,15 @@ const Nav = () =>{
                         Crypto Wallet
                     </Typography>
                     <Link to="/login">
+                        <Button
+                            className={"buttonGradient"}
+                            color="primary"
+                            size="lg"
+                            target="_blank"
+                            rel="noopener noreferrer">Sign in</Button>
 
                     </Link>
 
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbarMargin} />

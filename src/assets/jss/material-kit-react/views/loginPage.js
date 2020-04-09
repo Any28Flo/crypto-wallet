@@ -85,6 +85,10 @@ const signupPageStyle = {
   },
   inputIconsColor: {
     color: "#495057"
+  },
+  input:{
+    marginTop:"2em",
+    color: "blue"
   }
 };
 

@@ -42,3 +42,8 @@ nav{
   -webkit-transition: all .4s ease-in-out;
   transition: all .4s ease-in-out;
 }
+.textField {
+  margin-top: 30px;
+  margin-bottom: 10px;
+  color: #495057;
+}

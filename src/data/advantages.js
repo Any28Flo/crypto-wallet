@@ -10,8 +10,8 @@ export const advantages = [
     "description"  : "A single interface for crypto currencies"
   },
   {
-    "icon": "./images/wallet_1.svg",
-    "title" : "Personal Portafolio",
-    "description"  : "Personal crypto currency tailored for your needs"
+    "icon": "./images/pen_drive.svg",
+    "title" : "Recovery seed. Offline.",
+    "description"  : "Your entire wallet is always accessible via your personal 12 to 24 words long recovery seed"
   }
 ];

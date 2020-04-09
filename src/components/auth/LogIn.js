@@ -1,15 +1,44 @@
 import React, { useState, useContext } from 'react';
-import {TextField , Button} from '@material-ui/core';
-import AuthService from '../../services/auth-service';
 import { Link, useHistory } from 'react-router-dom';
+
 import {userContext} from "./../../App";
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import {TextField } from '@material-ui/core';
+
+import GridContainer from "../Grid/GridContainer";
+import GridItem from "../Grid/GridItem";
+import Button from "./../CustomButtons/Button"
+import Card from "./../Card/Card";
+import CardBody from "../Card/CardBody";
+import CardHeader from "../Card/CardHeader"
+import CardFooter from "../Card/CardFooter";
+
+// @material-ui/icons
+import Email from "@material-ui/icons/Email";
+import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
+
+import AuthService from '../../services/auth-service';
+
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-const LogIn = (props) => {
+import styles from './../../assets/jss/material-kit-react/views/loginPage';
+const useStyles = makeStyles(styles);
+
+
+const LogIn = () => {
 
     const MySwal = withReactContent(Swal);
     const history = useHistory();
+
+    const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
+    setTimeout(function() {
+        setCardAnimation("");
+    }, 700);
+    const classes = useStyles();
+
     const {setUser} =  useContext(userContext);
 
 
@@ -29,13 +58,14 @@ const LogIn = (props) => {
                 if(response.status === 200){
 
                     setUser(response.data.user);
-                    history.push("/user-board");
+                    history.push("/user-board"
+                    );
                     updateFormState({ email: "", password: "" });
                   }
             })
             .catch( error => {
 
-                updateFormState({ email: "", password: "" });
+                updateFormState({ email: "", password: ""});
 
                 MySwal.fire({
                     icon: 'error',
@@ -51,33 +81,64 @@ const LogIn = (props) => {
         updateFormState(Object.assign({}, formState, {[name]: value}));
     };
 
+
+
     return(
+        <div className={classes.container}>
+            <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={4}>
+                    <Card className={classes[cardAnimaton]}>
+                        <form className={classes.form} onSubmit={handleFormSubmit}>
+                            <CardHeader color="primary" className={classes.cardHeader}>
+                                <h4>Login</h4>
 
-        <div>
-            <form onSubmit={handleFormSubmit}>
-                <TextField
-                    name="email"
-                    label="Email"
-                    type="email"
-                    value={formState.email}
-                    onChange={ e => handleChange(e)}
-                />
+                            </CardHeader>
+                            <CardBody>
+                                <TextField
+                                    name="email"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <Email />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    label="Email"
+                                    type="email"
+                                    value={formState.email}
+                                    onChange={ e => handleChange(e)}
+                                />
 
-                <TextField
-                    name="password"
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
-                    value={formState.password}
-                    onChange={ e => handleChange(e)}
-                />
-                <Button variant="contained" type="submit" value="Login">Login</Button>
+                                <TextField
+                                    name="password"
+                                    InputProps={{
+                                        startAdornment: (
+                                            <InputAdornment position="start">
+                                                <HttpsOutlinedIcon />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                    label="Password"
+                                    type="password"
+                                    autoComplete="current-password"
+                                    value={formState.password}
+                                    onChange={ e => handleChange(e)}
+                                />
 
 
-            </form>
-            <p>Don't have account?
-                <Link to={"/signup"}> Signup</Link>
-            </p>
+                            </CardBody>
+                            <CardFooter className={classes.cardFooter}>
+
+                                <Button simple color="primary" size="lg" type="submit" value="Login">Login</Button>
+
+                            </CardFooter>
+                        </form>
+                        <p>Don't have account?
+                            <Link to={"/signup"}> Signup</Link>
+                        </p>
+                    </Card>
+                </GridItem>
+            </GridContainer>
         </div>
     )
 

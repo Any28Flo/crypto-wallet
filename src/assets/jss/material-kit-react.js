@@ -65,11 +65,11 @@ const card = {
 
 const defaultFont = {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    fontWeight: "300",
+    fontWeight: "500",
     lineHeight: "1.5em"
 };
 
-const primaryColor = "#9c27b0";
+const primaryColor = "#3F51B5";
 const warningColor = "#ff9800";
 const dangerColor = "#f44336";
 const successColor = "#4caf50";
@@ -159,7 +159,7 @@ const title = {
     color: "#3C4858",
     margin: "1.75rem 0 0.875rem",
     textDecoration: "none",
-    fontWeight: "700",
+    fontWeight: "900",
     fontFamily: `"Roboto Slab", "Times New Roman", serif`
 };
 

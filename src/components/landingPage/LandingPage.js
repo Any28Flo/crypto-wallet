@@ -10,7 +10,7 @@ import GridItem from "../Grid/GridItem";
 import Button from "./../CustomButtons/Button";
 import Advantages from "./Advantages";
 import HeroLayout from "./HeroLayout";
-
+import AdvantageSection from "./AdvantageSection";
 const useStyles = makeStyles(styles);
 const  FullWidthGrid = () => {
     const classes = useStyles();
@@ -23,23 +23,20 @@ const  FullWidthGrid = () => {
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem xs={12} sm={12} md={6}>
-                            <h1 className={classes.title}>Your Story Starts With Us.</h1>
+                            <h1 className={classes.title}>It's Time To Own Your Crypto</h1>
                             <h4>
-                                Every landing page needs a small description after the big bold
-                                title, that{"'"}s why we added this text here. Add here all the
-                                information that can make you or your product create the first
-                                impression.
+                                Buy and sell popular digital currencies, keep track of them in the one place.
                             </h4>
                             <br />
                             <Button
-                                color="danger"
+                                className={"buttonGradient"}
+                                color="primary"
                                 size="lg"
-                                href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ref=creativetim"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 <i className="fas fa-play" />
-                                Watch video
+                                Sign in
                             </Button>
                         </GridItem>
                     </GridContainer>
@@ -47,7 +44,7 @@ const  FullWidthGrid = () => {
             </HeroLayout>
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
-                    <Advantages/>
+                   <AdvantageSection/>
                 </div>
             </div>
 

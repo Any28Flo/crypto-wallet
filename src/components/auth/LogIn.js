@@ -81,8 +81,6 @@ const LogIn = () => {
         updateFormState(Object.assign({}, formState, {[name]: value}));
     };
 
-
-
     return(
         <div className={classes.container}>
             <GridContainer justify="center">

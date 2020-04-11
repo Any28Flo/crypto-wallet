@@ -25,10 +25,12 @@ const Nav = () =>{
         <div className={classes.root}>
             <AppBar position="fixed">
                 <Toolbar>
+                    <Link to="/">
+                        <Typography variant="h6" className={classes.title}>
+                            Crypto Wallet
+                        </Typography>
+                    </Link>
 
-                    <Typography variant="h6" className={classes.title}>
-                        Crypto Wallet
-                    </Typography>
                     <Link to="/login">
                         <Button color="inherit">Login</Button>
 

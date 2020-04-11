@@ -3,7 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import {withStyles} from "@material-ui/core";
 import {Grid} from "@material-ui/core"
-
+import ProfilePage from "./components/userBoard/ProfilePage";
 import Nav from "./components/nav/Nav";
 import SignUp from './components/auth/SignUp'
 import CoinsList from "./components/coinsList/CoinsList";
@@ -35,7 +35,7 @@ const App = props => {
                   <NavBar  isLoggedIn = {false}/>
                   <Switch>
                       <Route  exact path ='/login' render = {() => <LogIn/>}/>
-                      <Route exact path='/user-board' render={ ()=> <UserBoard user={newUser}/> }/>
+                      <Route exact path='/user-board' render={ ()=> <ProfilePage user={newUser}/> }/>
                       <Route exact path='/signup' render={ ()=> <SignUp/>}/>
                       <Route exact path='/all-cryptos' component={CoinsList} />
                       <Route exact path='/' component={LandingPage}/>

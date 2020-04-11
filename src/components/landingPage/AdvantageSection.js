@@ -21,7 +21,7 @@ export default function ProductSection() {
                 <GridItem xs={12} sm={12} md={8}>
                     <h2 className={classes.title}>Create your cryptocurrency portfolio today</h2>
                     <h3 className={classes.description}>
-                        Coinbase has a variety of features that make it the best place to start trading
+                        CryptoWallet has a variety of features that make it the best place to start trading
                     </h3>
                 </GridItem>
 

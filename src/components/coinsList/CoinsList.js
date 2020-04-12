@@ -1,14 +1,24 @@
 import React, {useState, useEffect} from 'react'
 import CoinItem from "./CoinItem";
 import LazyLoad from 'react-lazyload'
+import classNames from "classnames";
+import styles from "./../../assets/jss/material-kit-react/views/landingPage";
+
+import {makeStyles} from "@material-ui/core/styles";
+import GridItem from "../Grid/GridItem";
+import GridContainer from "../Grid/GridContainer";
+import InfoArea from "../InfoArea/InfoArea";
+
 
 const Loading = () =>(
     <div className=" coin loading">
         <h5>Loading</h5>
     </div>
 );
-const CoinsList = () => {
+const useStyles = makeStyles(styles);
 
+const CoinsList = () => {
+    const classes = useStyles();
     const [coins, setCoins] = useState([]);
     const [images, setImages] = useState([]);
     const fetchImages = async () =>{
@@ -58,31 +68,42 @@ const CoinsList = () => {
 assignImage();
     return(
         <div>
+            <div className={classNames(classes.main, classes.mainRaised)}>
+                <div className={classes.container}>
+                    <h1 className={classes.paddingTitle} >Available crypto currencies </h1>
+                    <div className={classes.section}>
+                        <GridContainer justify="center">
+                            {
+                                coins.map( (coin, index ) =>{
 
-            <h1>Available crypto currencies </h1>
-            {
-                coins.map( (coin, index ) =>{
+                                    return(
+                                        <GridItem key={coin.id} xs={12} sm={6} md={4}>
+                                            <LazyLoad key ={coin.id} placeholder={<Loading/>}>
+                                                <CoinItem
+                                                    id={coin.id}
+                                                    name={coin.name}
+                                                    symbol={coin.symbol}
+                                                    type ={coin.type}
+                                                    image = {coin.image}
+                                                    vertical
 
-                    return(
-                        <LazyLoad key ={coin.id} placeholder={<Loading/>}>
-                            <CoinItem
-                                key ={coin.id}
-                                id={coin.id}
-                                name={coin.name}
-                                symbol={coin.symbol}
-                                type ={coin.type}
-                                image = {coin.image}
+                                                />
+                                            </LazyLoad>
+                                        </GridItem>
+                                    )
 
+                                })
+                            }
+                        </GridContainer>
+                    </div>
 
-                            />
-                        </LazyLoad>
-                    )
+                </div>
+            </div>
 
-                })
-            }
 
 
         </div>
     )
 };
+
 export default CoinsList;

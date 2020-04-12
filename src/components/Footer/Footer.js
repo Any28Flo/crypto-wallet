@@ -19,7 +19,7 @@ const Footer = ()=>{
 
             <footer className={classes.footer}>
                 <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Made with love <span>&#128153;</span> by Ironhacker  <span>&#128105;</span> Analin Flores <span>&#128293;</span>
+                    Made with love <span role="img" aria-label="heart">&#128153;</span> by Ironhacker  <span  role="img" aria-label="girl">&#128105;</span> Analin Flores <span  role="img" aria-label="fire">&#128293;</span>
                 </Typography>
                 <Copyright />
             </footer>

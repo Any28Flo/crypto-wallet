@@ -21,10 +21,21 @@ const CoinItem = props =>{
 
         [classes.iconWrapperVertical]: vertical
     });
+
+    const renderImage = (img)=>{
+        if(typeof(img) === 'undefined'){
+            return  <img src='./images/wallet_1.svg' alt="" width="60em"/>
+        }else{
+            return  <img src={img} alt="" width="60em"/>
+        }
+    };
+
     return(
         <div className={classes.infoArea}>
             <div className={iconWrapper}>
-                <img src={image} alt="" width="60em"/>
+               {
+                   renderImage(image)
+               }
             </div>
             <div className={classes.descriptionWrapper}>
                 <h3 className={props.title}>{name}</h3>
@@ -32,7 +43,6 @@ const CoinItem = props =>{
                 <p className={classes.description}>Symbol: {symbol}</p>
                 <Link to={`/${props.id}`} >
                     <Button  size="small"  variant="outlined">See details</Button>
-
                 </Link>
             </div>
         </div>
@@ -46,7 +56,6 @@ CoinItem.defaultProps = {
 CoinItem.propTypes = {
     img: PropTypes.string,
     type: PropTypes.string.isRequired,
-
     vertical: PropTypes.bool
 };
 

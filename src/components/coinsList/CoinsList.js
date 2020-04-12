@@ -7,7 +7,6 @@ import styles from "./../../assets/jss/material-kit-react/views/landingPage";
 import {makeStyles} from "@material-ui/core/styles";
 import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
-import InfoArea from "../InfoArea/InfoArea";
 
 
 const Loading = () =>(
@@ -15,12 +14,14 @@ const Loading = () =>(
         <h5>Loading</h5>
     </div>
 );
+
 const useStyles = makeStyles(styles);
 
 const CoinsList = () => {
     const classes = useStyles();
     const [coins, setCoins] = useState([]);
     const [images, setImages] = useState([]);
+
     const fetchImages = async () =>{
         const res = await fetch('https://rest.coinapi.io/v1/assets/icons/{iconSize}?apikey=EC3F035E-E798-43A4-AA97-06F6E56661E0')
         const data = await  res.json();
@@ -69,13 +70,13 @@ assignImage();
     return(
         <div>
             <div className={classNames(classes.main, classes.mainRaised)}>
-                <div className={classes.container}>
+                <GridContainer justify="center">
                     <h1 className={classes.paddingTitle} >Available crypto currencies </h1>
-                    <div className={classes.section}>
+                </GridContainer>
                         <GridContainer justify="center">
                             {
                                 coins.map( (coin, index ) =>{
-
+                                    console.log(coin);
                                     return(
                                         <GridItem key={coin.id} xs={12} sm={6} md={4}>
                                             <LazyLoad key ={coin.id} placeholder={<Loading/>}>
@@ -86,7 +87,6 @@ assignImage();
                                                     type ={coin.type}
                                                     image = {coin.image}
                                                     vertical
-
                                                 />
                                             </LazyLoad>
                                         </GridItem>
@@ -95,13 +95,7 @@ assignImage();
                                 })
                             }
                         </GridContainer>
-                    </div>
-
-                </div>
             </div>
-
-
-
         </div>
     )
 };

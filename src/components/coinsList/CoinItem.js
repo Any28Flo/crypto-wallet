@@ -45,6 +45,7 @@ const CoinItem = props =>{
                     <Button  size="small"  variant="outlined">See details</Button>
                 </Link>
             </div>
+
         </div>
 
     )

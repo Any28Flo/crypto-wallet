@@ -1,10 +1,5 @@
 import {
   primaryColor,
-  warningColor,
-  dangerColor,
-  successColor,
-  infoColor,
-  roseColor,
   grayColor,
   title
 } from "./../../material-kit-react";
@@ -15,6 +10,23 @@ const infoStyle = {
     margin: "0 auto",
     padding: "0px"
   },
+  infoCoin: {
+    maxWidth: "560px",
+    margin: "0 auto",
+    padding: "0px"
+  },
+  main: {
+    background: "#FFFFFF",
+    position: "relative",
+    zIndex: "3"
+  },
+  mainRaised: {
+    paddingTop: "5em",
+    margin: "-60px 30px 0px",
+    borderRadius: "6px",
+    boxShadow:
+        "0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
+  },
   iconWrapper: {
     float: "left",
     marginTop: "24px",
@@ -23,28 +35,7 @@ const infoStyle = {
   primary: {
     color: primaryColor
   },
-  warning: {
-    color: warningColor
-  },
-  danger: {
-    color: dangerColor
-  },
-  success: {
-    color: successColor
-  },
-  info: {
-    color: infoColor
-  },
-  rose: {
-    color: roseColor
-  },
-  gray: {
-    color: grayColor
-  },
-  icon: {
-    width: "36px",
-    height: "36px"
-  },
+
   descriptionWrapper: {
     color: grayColor,
     overflow: "hidden"
@@ -54,7 +45,8 @@ const infoStyle = {
     color: grayColor,
     overflow: "hidden",
     marginTop: "0px",
-    fontSize: "14px"
+    fontSize: "1.5em"
+
   },
   iconWrapperVertical: {
     float: "none"

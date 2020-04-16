@@ -1,4 +1,4 @@
-import React , {useContext } from 'react'
+import React , {useContext , useState } from 'react'
 import classNames from "classnames";
 import{ userContext} from './../../App';
 import CreateWallet from './../wallet/CreateWallet'
@@ -16,13 +16,14 @@ const useStyles = makeStyles(styles);
 
 
 const UserBoard = (props) =>{
+    const [wallets , setWallets] = useState([]);
+
     const classes = useStyles();
     const imageClasses = classNames(
         classes.imgRaised,
         classes.imgRoundedCircle,
         classes.imgFluid
     );
-    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
 
     const userData = useContext(userContext);
 
@@ -40,8 +41,7 @@ const UserBoard = (props) =>{
                                             <img src={profile} alt="..." className={imageClasses} />
                                         </div>
                                         <div className={classes.name}>
-                                            <h3 className={classes.title}>Christian Louboutin</h3>
-                                            <h6>DESIGNER</h6>
+
                                             <Button justIcon link className={classes.margin5}>
                                                 <i className={"fab fa-twitter"} />
                                             </Button>
@@ -55,14 +55,7 @@ const UserBoard = (props) =>{
                                     </div>
                                 </GridItem>
                             </GridContainer>
-                            <div className={classes.description}>
-                                <p>
-                                    An artist of considerable range, Chet Faker — the name taken by
-                                    Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                                    and records all of his own music, giving it a warm, intimate
-                                    feel with a solid groove structure.{" "}
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -73,16 +66,3 @@ const UserBoard = (props) =>{
 };
 
 export default UserBoard;
-
-/*
-<div>
-    <h2>User Board</h2>
-
-    <p>Welcome {props.user.username}</p>
-    <p> </p>
-    <h2>Create your first wallet</h2>
-    <CreateWallet getUser={userData} />
-    <Wallets getUser={userData}/>
-
-    <p>Actual price coins</p>
-</div>*/

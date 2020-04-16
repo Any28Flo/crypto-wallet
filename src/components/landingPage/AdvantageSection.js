@@ -31,9 +31,9 @@ export default function ProductSection() {
                     {
                         advantages.map((advantage, index) =>{
                             return(
-                                <GridItem xs={12} sm={12} md={4}>
+                                <GridItem  key={`Info-${index}`} xs={12} sm={12} md={4}>
                                     <InfoArea
-                                        key={`Info-${index}`}
+
                                         title={advantage.title}
                                         description={advantage.description}
                                         img={advantage.icon}

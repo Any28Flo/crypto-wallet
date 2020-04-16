@@ -10,6 +10,7 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 
 import Favorite from "@material-ui/icons/Favorite";
 import AddBoxIcon from '@material-ui/icons/AddBox';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import GridContainer from "../Grid/GridItem";
 import GridItem from "../Grid/GridItem";
 import Button from "./../CustomButtons/Button";
@@ -17,6 +18,7 @@ import HeroLayout from "../landingPage/HeroLayout";
 import Wallets from "./../wallet/Wallets";
 import CreateWallet from './../wallet/CreateWallet'
 import NavPills from "../NavPills/NavPills";
+import PriceConverter from "../PriceConverter/PriceConverter";
 import styles from "./../../assets/jss/material-kit-react/views/profilePage";
 const useStyles = makeStyles(styles);
 
@@ -96,31 +98,12 @@ export default function ProfilePage(props) {
                           )
                         },
                         {
-                          tabButton: "Favorite",
-                          tabIcon: Favorite,
+                          tabButton: "Buy cryptos",
+                          tabIcon:ShoppingCartIcon,
                           tabContent: (
-                              <GridContainer justify="center">
-                                <GridItem xs={12} sm={12} md={4}>
-                                  <img
-                                      alt="..."
-                                      src={work1}
-                                      className={navImageClasses}
-                                  />
-                                  <img
-                                      alt="..."
-                                      src={work1}
-                                      className={navImageClasses}
-                                  />
-                                </GridItem>
-                                <GridItem xs={12} sm={12} md={4}>
-                                  <img
-                                      alt="..."
-                                      src={work1}
-                                      className={navImageClasses}
-                                  />
 
-                                </GridItem>
-                              </GridContainer>
+                                    <PriceConverter/>
+
                           )
                         }
                       ]}

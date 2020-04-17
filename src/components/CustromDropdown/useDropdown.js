@@ -1,6 +1,5 @@
 import React , {useState} from "react";
 
-
 import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 
@@ -12,6 +11,7 @@ const useDropdown = (label, defaultState, options) =>{
 
     const Dropdown = () =>(
         <TextField
+            variant="filled"
             id={id}
             select
             label="Select"
@@ -22,7 +22,7 @@ const useDropdown = (label, defaultState, options) =>{
             <MenuItem>All</MenuItem>
             {
                 options.map((option) => (
-                <MenuItem key={option.value} value={option.value}>
+                <MenuItem key={option.value} value={option.id}>
 
                     { `${option.label} ${option.value}` }
                 </MenuItem>

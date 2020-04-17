@@ -5,7 +5,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Button from "./../CustomButtons/Button";
 import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import {currencies} from "./../../data/currencies"
@@ -33,6 +37,10 @@ const PriceConverter = props =>{
 
     const [crypto , setCrypto] = useState({});
 
+    const [currencieAmount , setCurrencieAmount] = useState(0);
+
+    let [amountBuy , setAmountBuy ] = useState(0);
+
     const getCryptos  = () =>{
         cryptoService.getCryptos()
             .then(response =>{
@@ -45,6 +53,8 @@ const PriceConverter = props =>{
                 });
                 setCryptos(cryptoNames.slice(0, 5));
             })
+
+
     };
 
     useEffect( () =>{
@@ -53,38 +63,83 @@ const PriceConverter = props =>{
 
     }, []);
 
+    const priceConvertion = () =>{
+        cryptoService.converter(currency, crypto, currencieAmount)
+            .then(response =>{
+                amountBuy = setAmountBuy(response.data.price.toFixed(5));
+            })
+    }
+    const handleChange= (e)=>{
+        setCurrencieAmount( e.target.value );
+
+    };
     return(
-        <GridContainer justify="center">
-            <GridItem  xs={12} sm={12} md={6}>
-                <h2>Crypto</h2>
-                <TextField
-                    id="crypto-dropdown"
-                    select
-                    label="Select"
-                    value={crypto}
-                    onChange={e => setCrypto(e.target.value)}
-                    onBlur={ e => setCrypto(e.target.value)}
-                >
-                    {
-                        crytos.map( ({id,name}) =>(
-                            <MenuItem
-                                key={id}
-                                value={name}
-                            >
-                                {name}
-                            </MenuItem>
-                        ))
-                    }
-                </TextField>
+        <div>
+            <GridContainer justify="center">
+                <GridItem  xs={12} sm={12} md={12}>
+                    <h2>Crypto</h2>
+                    <TextField
+                        variant="filled"
+                        id="crypto-dropdown"
+                        select
+                        label="Select"
+                        value={crypto}
+                        onChange={e => setCrypto(e.target.value)}
+                        onBlur={ e => setCrypto(e.target.value)}
+                    >
+                        {
+                            crytos.map( ({id,name}) =>(
+                                <MenuItem
+                                    key={id}
+                                    value={id}
+                                >
+                                    {name}
+                                </MenuItem>
+                            ))
+                        }
+                    </TextField>
 
-              </GridItem>
+                </GridItem>
 
-            <GridItem  xs={12} sm={12} md={6}>
-                <h2>Currencie</h2>
-               <CurrencyDropdown/>
-            </GridItem>
-        </GridContainer>
 
+            </GridContainer>
+            <GridContainer  justify="center">
+                <GridItem  xs={12} sm={12} md={6}   >
+                    <h2>Currencie</h2>
+                    <CurrencyDropdown/>
+                </GridItem>
+            </GridContainer>
+            <GridContainer justify="center">
+
+            </GridContainer>
+            <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={6}>
+                    <FormControl fullWidth className={classes.margin}>
+                        <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
+                        <Input
+                            id="standard-adornment-amount"
+                            value={currencieAmount}
+                            onChange={e => handleChange(e)}
+                            defaultValue={0}
+                            startAdornment={<InputAdornment position="start">$</InputAdornment>}
+                        />
+                    </FormControl>
+
+                </GridItem>
+
+
+            </GridContainer>
+            <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                    <Button color="primary" onClick={priceConvertion}>Calculate</Button>
+                </GridItem>
+            </GridContainer>
+            <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                    <h2>{amountBuy}</h2>
+                </GridItem>
+            </GridContainer>
+        </div>
     )
 };
 

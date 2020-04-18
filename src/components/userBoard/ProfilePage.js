@@ -4,7 +4,7 @@ import{ userContext} from './../../App';
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import profile from "./../../assets/img/kendall.jpg";
+import profile from "./../../assets/img/erika.jpg";
 import work1 from "./../../assets/img/coins.svg";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
@@ -51,15 +51,7 @@ export default function ProfilePage(props) {
                   <div className={classes.name}>
                     <h2 className={classes.title}> {props.user.username}</h2>
                     <h3>Total: : <span>$150.20</span></h3>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-twitter"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-instagram"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-facebook"} />
-                    </Button>
+
                   </div>
                 </div>
               </GridItem>

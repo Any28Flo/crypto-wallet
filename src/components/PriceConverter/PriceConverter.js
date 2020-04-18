@@ -136,8 +136,23 @@ const PriceConverter = props =>{
             </GridContainer>
             <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
-                    <h2>{amountBuy}</h2>
+                    <h2>You want to buy {amountBuy} {crypto.name}</h2>
                 </GridItem>
+            </GridContainer>
+            <GridContainer>
+                <TextField
+                    variant="filled"
+                    id="wallet-dropdown"
+                    select
+                    label="Select"
+                    value={crypto}
+                    onChange={e => setCrypto(e.target.value)}
+                    onBlur={ e => setCrypto(e.target.value)}
+                >
+                    {
+
+                    }
+                </TextField>
             </GridContainer>
         </div>
     )

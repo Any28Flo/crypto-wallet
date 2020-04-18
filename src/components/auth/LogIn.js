@@ -61,7 +61,7 @@ const LogIn = () => {
                     history.push("/user-board"
                     );
                     updateFormState({ email: "", password: "" });
-                  }
+                }
             })
             .catch( error => {
 
@@ -71,7 +71,7 @@ const LogIn = () => {
                     icon: 'error',
                     title :'Oops...',
                     text : 'Error logging in please try again'
-                    
+
                 })
             } )
     };

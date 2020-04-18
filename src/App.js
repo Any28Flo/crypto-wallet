@@ -1,15 +1,12 @@
 import React, { createContext, useState} from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import {withStyles} from "@material-ui/core";
-import {Grid} from "@material-ui/core"
 import ProfilePage from "./components/userBoard/ProfilePage";
 import Nav from "./components/nav/Nav";
 import SignUp from './components/auth/SignUp'
 import CoinsList from "./components/coinsList/CoinsList";
 import CoinDetail from "./components/coinDetail/CoinDetail";
 import LogIn from "./components/auth/LogIn";
-import UserBoard from "./components/userBoard/UserBoard";
 import LandingPage from "./components/landingPage/LandingPage";
 import NavUser from "./components/nav/NavUser"
 import Footer from "./components/Footer/Footer";
@@ -32,15 +29,15 @@ const App = props => {
         <userContext.Provider value={{user: newUser , setUser : updateUser}}>
             <div className="App">
 
-                  <NavBar  isLoggedIn = {false}/>
-                  <Switch>
-                      <Route  exact path ='/login' render = {() => <LogIn/>}/>
-                      <Route exact path='/user-board' render={ ()=> <ProfilePage user={newUser}/> }/>
-                      <Route exact path='/signup' render={ ()=> <SignUp/>}/>
-                      <Route exact path='/all-cryptos' component={CoinsList} />
-                      <Route exact path='/' component={LandingPage}/>
-                      <Route exact path='/:id' component={CoinDetail} />
-                  </Switch>
+                <NavBar  isLoggedIn = {false}/>
+                <Switch>
+                    <Route  exact path ='/login' render = {() => <LogIn/>}/>
+                    <Route exact path='/user-board' render={ ()=> <ProfilePage user={newUser}/> }/>
+                    <Route exact path='/signup' render={ ()=> <SignUp/>}/>
+                    <Route exact path='/all-cryptos' component={CoinsList} />
+                    <Route exact path='/' component={LandingPage}/>
+                    <Route exact path='/:id' component={CoinDetail} />
+                </Switch>
                 <Footer/>
 
             </div>
@@ -50,6 +47,7 @@ const App = props => {
 
 
 export default App;
+
 
 //
 /*

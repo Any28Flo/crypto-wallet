@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 // nodejs library to set properties for components
-import PropTypes from "prop-types";
+
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import styles from "./../../assets/jss/material-kit-react/components/infoStyle";
 import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
-import PriceConverter from "../PriceConverter/PriceConverter";
 const useStyles = makeStyles(styles);
 
 const CoinDetail  = props =>{
@@ -89,18 +88,7 @@ const CoinDetail  = props =>{
 
 
             </GridContainer>
-            <GridContainer justify="center">
-                <GridItem  xs={12} sm={12} md={4}>
-                    <h1>Cryptocurrency Converter Calculator</h1>
-                </GridItem>
-                <GridItem  xs={12} sm={12} md={12}>
-                    <div className={classes.infoCoin}>
-                        <PriceConverter coin={coinDetail.name} coinId={coinDetail.id} />
 
-                    </div>
-                </GridItem>
-
-            </GridContainer>
             <br/>
         </div>
     )

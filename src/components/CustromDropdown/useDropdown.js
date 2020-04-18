@@ -22,15 +22,15 @@ const useDropdown = (label, defaultState, options) =>{
             <MenuItem>All</MenuItem>
             {
                 options.map((option) => (
-                <MenuItem key={option.value} value={option.id}>
+                    <MenuItem key={option.value} value={option.id}>
 
-                    { `${option.label} ${option.value}` }
-                </MenuItem>
-            ))}
+                        { `${option.label} ${option.value}` }
+                    </MenuItem>
+                ))}
         </TextField>
     );
 
- return [state, Dropdown, setState];
+    return [state, Dropdown, setState];
 };
 
 export default useDropdown;

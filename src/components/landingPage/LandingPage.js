@@ -36,7 +36,7 @@ const  FullWidthGrid = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <i className="fas fa-play" />
+
                                     Sign in
                                 </Button>
                             </Link>

@@ -45,7 +45,7 @@ const SignUp = () => {
     const service = new AuthService();
 
     //const { setUser } = useContext(userContext);
-    const [user, setUser] = useContext(UserContext);
+    const [_, setUser] = useContext(UserContext);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();

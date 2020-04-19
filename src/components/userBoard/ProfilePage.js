@@ -1,6 +1,6 @@
 import React , {useContext } from 'react'
 import classNames from "classnames";
-import{ userContext} from './../../App';
+import UserContext from "./../../context"
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -26,8 +26,7 @@ const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
   const classes = useStyles();
-  const userData = useContext(userContext);
-
+  const [user, setUser] = useContext(UserContext);
   const { ...rest } = props;
   const imageClasses = classNames(
     classes.imgRaised,
@@ -49,7 +48,7 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h2 className={classes.title}> {props.user.username}</h2>
+                    <h2 className={classes.title}> {user.username}</h2>
                     <h3>Total: : <span>$150.20</span></h3>
 
                   </div>
@@ -71,7 +70,7 @@ export default function ProfilePage(props) {
                           tabContent: (
                               <GridContainer justify="center">
                                 <GridItem xs={12} sm={12} md={12}>
-                                    <CreateWallet getUser={userData} />
+                                    {/*<CreateWallet getUser={userData} />*/}
                                 </GridItem>
 
                               </GridContainer>
@@ -83,7 +82,7 @@ export default function ProfilePage(props) {
                           tabContent: (
                               <GridContainer justify="center">
 
-                                    <Wallets getUser={userData}/>
+                                  {/*  <Wallets getUser={userData}/>*/}
 
 
                               </GridContainer>

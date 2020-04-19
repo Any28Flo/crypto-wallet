@@ -33,14 +33,13 @@ const LogIn = () => {
 
     const MySwal = withReactContent(Swal);
     const history = useHistory();
-    const [user, setUser] = useContext(UserContext);
+    const [_, setUser] = useContext(UserContext);
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
         setCardAnimation("");
     }, 700);
     const classes = useStyles();
 
-   // const {setUser} =  useContext(userContext);
 
 
     const [ formState, updateFormState ] = useState (

@@ -1,5 +1,4 @@
 
-import ProfilePage from "./components/userBoard/ProfilePage";
 import Nav from "./components/nav/Nav";
 import SignUp from './components/auth/SignUp'
 import CoinsList from "./components/coinsList/CoinsList";

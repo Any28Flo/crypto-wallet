@@ -1,7 +1,7 @@
 
 import React, { useState, useContext } from 'react';
 import AuthService from '../../services/auth-service';
-
+import UserContext from "./../../context"
 
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -22,7 +22,6 @@ import People from "@material-ui/icons/People";
 
 
 import { Link, useHistory } from 'react-router-dom';
-import {userContext} from "./../../App";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import styles from './../../assets/jss/material-kit-react/views/loginPage';
@@ -45,7 +44,8 @@ const SignUp = () => {
     const [ formState, updateFormState ] = useState({ username: '', password: '', email : '' ,image : '' });
     const service = new AuthService();
 
-    const { setUser } = useContext(userContext);
+    //const { setUser } = useContext(userContext);
+    const [user, setUser] = useContext(UserContext);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -58,8 +58,10 @@ const SignUp = () => {
 
             .then( response => {
                 if(response.status === 200){
-                    setUser(response);
-                    history.push('/userBoard');
+                    const {username,email,image} = response.data.newUser;
+                    const newUser = {username,email,image};
+                    setUser(newUser);
+                    history.push('/user-board');
                     updateFormState({
                         username: "",
                         password: "",

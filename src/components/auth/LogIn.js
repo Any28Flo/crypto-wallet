@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useContext} from 'react';
+import { Link, useHistory, Redirect } from 'react-router-dom';
 
-import {userContext} from "./../../App";
+import UserContext from "./../../context"
+
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -32,14 +33,14 @@ const LogIn = () => {
 
     const MySwal = withReactContent(Swal);
     const history = useHistory();
-
+    const [user, setUser] = useContext(UserContext);
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
         setCardAnimation("");
     }, 700);
     const classes = useStyles();
 
-    const {setUser} =  useContext(userContext);
+   // const {setUser} =  useContext(userContext);
 
 
     const [ formState, updateFormState ] = useState (
@@ -53,20 +54,17 @@ const LogIn = () => {
         const password = formState.password;
         service.signin(email, password)
             .then( response => {
-
                 window.localStorage.token =response.data.token;
                 if(response.status === 200){
-
-                    setUser(response.data.user);
-                    history.push("/user-board"
-                    );
+                    const {username,email,image} = response.data.user;
+                    const newUser= {username,email,image};
+                    setUser(newUser);
                     updateFormState({ email: "", password: "" });
+                    history.push("/user-board")
                 }
             })
             .catch( error => {
-
                 updateFormState({ email: "", password: ""});
-
                 MySwal.fire({
                     icon: 'error',
                     title :'Oops...',

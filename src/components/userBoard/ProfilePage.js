@@ -65,20 +65,14 @@ export default function ProfilePage(props) {
                           tabButton: "Add Wallet",
                           tabIcon: AddBoxIcon,
                           tabContent: (
-
                                 <CreateWallet/>
-
                           )
                         },
                         {
                           tabButton: "See your wallets",
                           tabIcon: VisibilityIcon ,
                           tabContent: (
-                              <h1>hola</h1>
-
-
-
-
+                              <Wallets/>
                           )
                         },
                         {

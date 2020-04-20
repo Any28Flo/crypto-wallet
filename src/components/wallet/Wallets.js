@@ -9,17 +9,12 @@ const Wallets = props =>{
     const [wallets , setWallets] = useState([]);
     const walletService = new WalletService();
 
-    const getWallets = () =>{
-        const createdBy = user._id;
-        console.log(createdBy);
-       walletService.getAll(createdBy)
+
+    useEffect( ()=>{
+        walletService.getAll(user._id)
             .then(response =>{
                 setWallets(response.data.wallets);
             })
-    };
-
-    useEffect( ()=>{
-        getWallets();
     }, []);
 
     return(
@@ -30,9 +25,7 @@ const Wallets = props =>{
                 wallets.map((wallet,index) =>{
                     return(
                         <GridItem key={`wallet-${index}`} xs={12} sm={12} md={12}>
-
                             <WalletCard  walletData={wallet}/>
-
                         </GridItem>
                     )
                 })

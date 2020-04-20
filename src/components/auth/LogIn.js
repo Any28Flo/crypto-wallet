@@ -1,5 +1,5 @@
 import React, { useState, useContext} from 'react';
-import { Link, useHistory, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import UserContext from "./../../context"
 
@@ -33,7 +33,7 @@ const LogIn = () => {
 
     const MySwal = withReactContent(Swal);
     const history = useHistory();
-    const [_, setUser] = useContext(UserContext);
+    const [user,setUser] = useContext(UserContext);
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
         setCardAnimation("");
@@ -53,10 +53,11 @@ const LogIn = () => {
         const password = formState.password;
         service.signin(email, password)
             .then( response => {
-                window.localStorage.token =response.data.token;
                 if(response.status === 200){
-                    const {username,email,image} = response.data.user;
-                    const newUser= {username,email,image};
+                    window.localStorage.token =response.data.token;
+
+                    const {username,email,image,_id} = response.data.user;
+                    const newUser= {username,email,image,_id};
                     setUser(newUser);
                     updateFormState({ email: "", password: "" });
                     history.push("/user-board")

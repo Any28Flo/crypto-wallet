@@ -6,7 +6,6 @@ class WalletService{
     constructor() {
         let walletService = axios.create({
             baseURL: 'http://localhost:5000/api',
-
             headers: {'x-access-token': `${accessToken}`}
 
         });
@@ -14,7 +13,6 @@ class WalletService{
 
     }
     create = (walletName ,description,coins, createdBy) =>{
-
         return this.walletService.post('/wallets', {
             walletName, description, coins , createdBy
         })

@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-// nodejs library to set properties for components
 
-// nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,7 +9,8 @@ import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 const useStyles = makeStyles(styles);
 
-const CoinDetail  = props =>{
+const CoinDetail  =( { match }) =>{
+    console.log(match.params.id)
     const classes = useStyles();
 
     const [coinDetail, setCoinDetail] = useState([]);
@@ -24,7 +23,8 @@ const CoinDetail  = props =>{
     const url ='https://api.coinpaprika.com/v1/coins/';
 
     const fetchCoinDetails = async () =>{
-        const res = await fetch(`${url}${props.match.params.id}`);
+
+        const res = await fetch(`${url}`)
 
         const coinDetails = await res.json();
 
@@ -70,7 +70,7 @@ const CoinDetail  = props =>{
                     <div className={classes.infoCoin}>
 
                         <div className={classes.descriptionWrapper}>
-                            <h2 className={props.title}>{coinDetail.name}</h2>
+                            <h2 className={classes.title}>{coinDetail.name}</h2>
                             <p className={classes.description}>Rank : {coinDetail.rank}</p>
                             <p className={classes.description}>Symbol : {coinDetail.symbol}</p>
                             <p className={classes.description}>{coinDetail.description}</p>

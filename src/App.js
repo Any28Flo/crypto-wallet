@@ -6,9 +6,11 @@ import LandingPage from "./components/landingPage/LandingPage";
 import LogIn from "./components/auth/LogIn";
 import SignUp from "./components/auth/SignUp";
 import ProfilePage from "./components/userBoard/ProfilePage";
+import CoinsList from "./components/coinsList/CoinsList";
 
 
 import './App.css';
+import CoinDetail from "./components/coinDetail/CoinDetail";
 
 
 const App = props => {
@@ -21,6 +23,8 @@ const App = props => {
                     <Route exact path='/login' render = { () => <LogIn/>}/>
                     <Route exact path='/signup' render={ () => <SignUp/>}/>
                     <Route exact path='/user-board' render={ () => <ProfilePage/>}/>
+                    <Route exact path='/all-cryptos' render={ () => <CoinsList />}/>
+                    <Route exact path='/all-cryptos/:id' render={ () => <CoinDetail/>}/>
                     <Route exact path='/' component={LandingPage}/>
 
 

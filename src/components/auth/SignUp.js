@@ -44,8 +44,7 @@ const SignUp = () => {
     const [ formState, updateFormState ] = useState({ username: '', password: '', email : '' ,image : '' });
     const service = new AuthService();
 
-    //const { setUser } = useContext(userContext);
-    const [_, setUser] = useContext(UserContext);
+    const [user,setUser] = useContext(UserContext);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -57,20 +56,27 @@ const SignUp = () => {
         service.signup(username, password, email, image)
 
             .then( response => {
+                console.log(response)
                 if(response.status === 200){
+                    console.log("Yeii")
                     const {username,email,image} = response.data.newUser;
                     const newUser = {username,email,image};
                     setUser(newUser);
-                    history.push('/user-board');
-                    updateFormState({
-                        username: "",
+                    updateFormState({ username: "",
                         password: "",
                         email: "",
-                        image: ""
-                    });
+                        image: ""});
+
+                    history.push('/user-board');
+
                 }
             })
             .catch( error => {
+                updateFormState({ username: "",
+                    password: "",
+                    email: "",
+                    image: ""});
+
                 MySwal.fire({
                     icon: 'error',
                     title :'Oops...',

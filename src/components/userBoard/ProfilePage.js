@@ -3,12 +3,9 @@ import classNames from "classnames";
 import UserContext from "./../../context"
 
 import { makeStyles } from "@material-ui/core/styles";
-
 import profile from "./../../assets/img/erika.jpg";
-import work1 from "./../../assets/img/coins.svg";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
-import Favorite from "@material-ui/icons/Favorite";
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import GridContainer from "../Grid/GridItem";
@@ -41,7 +38,7 @@ export default function ProfilePage(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>
-            <GridContainer justify="center">
+            <GridContainer >
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div>
@@ -58,7 +55,7 @@ export default function ProfilePage(props) {
             <div className={classes.description}>
 
             </div>
-            <GridContainer justify="center">
+            <GridContainer >
                 <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                   <NavPills
                       alignCenter
@@ -68,24 +65,20 @@ export default function ProfilePage(props) {
                           tabButton: "Add Wallet",
                           tabIcon: AddBoxIcon,
                           tabContent: (
-                              <GridContainer justify="center">
-                                <GridItem xs={12} sm={12} md={12}>
-                                    {/*<CreateWallet getUser={userData} />*/}
-                                </GridItem>
 
-                              </GridContainer>
+                                <CreateWallet/>
+
                           )
                         },
                         {
                           tabButton: "See your wallets",
                           tabIcon: VisibilityIcon ,
                           tabContent: (
-                              <GridContainer justify="center">
-
-                                  {/*  <Wallets getUser={userData}/>*/}
+                              <h1>hola</h1>
 
 
-                              </GridContainer>
+
+
                           )
                         },
                         {
@@ -93,7 +86,7 @@ export default function ProfilePage(props) {
                           tabIcon:ShoppingCartIcon,
                           tabContent: (
 
-                                    <PriceConverter/>
+                                    <h1>Hola</h1>
 
                           )
                         }

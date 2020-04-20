@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+
 import CoinItem from "./CoinItem";
 import LazyLoad from 'react-lazyload'
 import classNames from "classnames";
@@ -18,6 +19,8 @@ const Loading = () =>(
 const useStyles = makeStyles(styles);
 
 const CoinsList = () => {
+
+
     const classes = useStyles();
     const [coins, setCoins] = useState([]);
     const [images, setImages] = useState([]);
@@ -41,6 +44,7 @@ const CoinsList = () => {
 
     };
     useEffect(  () =>{
+
         fetchCoins();
 
     }, []);
@@ -66,7 +70,7 @@ const CoinsList = () => {
         });
     };
 
-assignImage();
+    assignImage();
     return(
         <div>
             <div className={classNames(classes.main, classes.mainRaised)}>
@@ -76,7 +80,6 @@ assignImage();
                         <GridContainer justify="center">
                             {
                                 coins.map( (coin, index ) =>{
-                                    console.log(coin);
                                     return(
                                         <GridItem key={coin.id} xs={12} sm={6} md={4}>
                                             <LazyLoad key ={coin.id} placeholder={<Loading/>}>

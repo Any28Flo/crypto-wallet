@@ -15,10 +15,9 @@ const useStyles = makeStyles(styles);
 
 const CoinItem = props =>{
     const classes = useStyles();
-    const {name, symbol,type, image, vertical}= props;
+    const {name, symbol,type, image, vertical, id}= props;
     const iconWrapper = classNames({
         [classes.iconWrapper]: true,
-
         [classes.iconWrapperVertical]: vertical
     });
 
@@ -41,7 +40,7 @@ const CoinItem = props =>{
                 <h3 className={props.title}>{name}</h3>
                 <p className={classes.description}>Type: {type}</p>
                 <p className={classes.description}>Symbol: {symbol}</p>
-                <Link to={`/${props.id}`} >
+                <Link to={`/all-cryptos/${id}`} >
                     <Button  size="small"  variant="outlined">See details</Button>
                 </Link>
             </div>

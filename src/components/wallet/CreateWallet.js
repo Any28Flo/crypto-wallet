@@ -1,10 +1,12 @@
-import React , {useState} from "react";
+import React, {useContext, useState} from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
-
+import UserContext from "./../../context"
 import TextField from "@material-ui/core/TextField"
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
+import GridContainer from "../Grid/GridItem";
+import GridItem from "../Grid/GridItem";
 import WalletService from './../../services/wallet-services'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -18,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateWallet = props => {
     const classes = useStyles();
+    const [user, setUser] = useContext(UserContext);
     const walletService = new WalletService();
     const Message = withReactContent(Swal);
     const [formState,  updateFormState] = useState({
@@ -27,16 +30,10 @@ const CreateWallet = props => {
 
      const handleFormSubmit = event =>{
          event.preventDefault();
-
-
-         const nameWallet = formState.walletName;
-         const description = formState.description;
+        const {walletName, description} = formState;
          const coins = [];
-
-         const createdBy = props.getUser.user._id;
-         walletService.create(nameWallet ,description,coins ,createdBy)
+         walletService.create(walletName ,description,coins,user._id )
              .then(response =>{
-                 console.log(response);
                  if(response.status === 200){
                      Message.fire({
                          icon: 'success',
@@ -55,9 +52,6 @@ const CreateWallet = props => {
                      text : 'Error creating you new wallet, please try again'
                  })
              })
-
-
-
      };
 
     const handleChange = (event) => {
@@ -66,20 +60,27 @@ const CreateWallet = props => {
         updateFormState(Object.assign({}, formState, {[name]: value}));
     };
  return(
-     <form onSubmit={handleFormSubmit}>
-         <TextField name="walletName" value={formState.walletName} label="Name of your wallet" variant="outlined"  onChange={e => handleChange(e)}/>
-         <TextField name="description" value={formState.description} label = "Description"  variant="outlined" onChange={ e=> handleChange(e)}/>
-         <Button
-             variant="contained"
-             color="primary"
-             size="large"
-             className={classes.button}
-             startIcon={<SaveIcon />}
-             type ="submit"
-         >
-             Save
-         </Button>
-     </form>
+     <GridContainer justify="center">
+             <form onSubmit={handleFormSubmit}>
+                 <GridItem xs={12} sm={12} md={12}>
+                     <TextField name="walletName" value={formState.walletName} label="Name of your wallet" variant="outlined"  onChange={e => handleChange(e)}/>
+
+                 </GridItem>
+                 <GridItem xs={12} sm={12} md={12}>
+                     <TextField name="description" value={formState.description} label = "Description"  variant="outlined" onChange={ e=> handleChange(e)}/>
+                 </GridItem>
+                 <Button
+                     variant="contained"
+                     color="primary"
+                     size="large"
+                     className={classes.button}
+                     startIcon={<SaveIcon />}
+                     type ="submit"
+                 >
+                     Save
+                 </Button>
+             </form>
+     </GridContainer>
  )
 };
 

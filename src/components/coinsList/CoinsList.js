@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react'
-
 import CoinItem from "./CoinItem";
 import LazyLoad from 'react-lazyload'
 import classNames from "classnames";
@@ -19,8 +18,6 @@ const Loading = () =>(
 const useStyles = makeStyles(styles);
 
 const CoinsList = () => {
-
-
     const classes = useStyles();
     const [coins, setCoins] = useState([]);
     const [images, setImages] = useState([]);
@@ -38,20 +35,19 @@ const CoinsList = () => {
 
     const fetchCoins = async () =>{
         const res = await fetch(url);
-          await fetchImages();
+        await fetchImages();
         const data = await res.json();
         setCoins(data);
 
     };
     useEffect(  () =>{
-
         fetchCoins();
 
     }, []);
 
 
     const searchImage = imageSearch =>{
-       return  images.filter(image =>{
+        return  images.filter(image =>{
             return image.asset_id === imageSearch
         })
     };
@@ -64,8 +60,8 @@ const CoinsList = () => {
                 return coin.image = undefined;
 
             }else{
-               return coin.image=coinImage[0].url;
-           }
+                return coin.image=coinImage[0].url;
+            }
 
         });
     };
@@ -77,27 +73,28 @@ const CoinsList = () => {
                 <GridContainer justify="center">
                     <h1 className={classes.paddingTitle} >Available crypto currencies </h1>
                 </GridContainer>
-                        <GridContainer justify="center">
-                            {
-                                coins.map( (coin, index ) =>{
-                                    return(
-                                        <GridItem key={coin.id} xs={12} sm={6} md={4}>
-                                            <LazyLoad key ={coin.id} placeholder={<Loading/>}>
-                                                <CoinItem
-                                                    id={coin.id}
-                                                    name={coin.name}
-                                                    symbol={coin.symbol}
-                                                    type ={coin.type}
-                                                    image = {coin.image}
-                                                    vertical
-                                                />
-                                            </LazyLoad>
-                                        </GridItem>
-                                    )
+                <GridContainer justify="center">
+                    {
+                        coins.map( (coin, index ) =>{
+                            console.log(coin);
+                            return(
+                                <GridItem key={coin.id} xs={12} sm={6} md={4}>
+                                    <LazyLoad key ={coin.id} placeholder={<Loading/>}>
+                                        <CoinItem
+                                            id={coin.id}
+                                            name={coin.name}
+                                            symbol={coin.symbol}
+                                            type ={coin.type}
+                                            image = {coin.image}
+                                            vertical
+                                        />
+                                    </LazyLoad>
+                                </GridItem>
+                            )
 
-                                })
-                            }
-                        </GridContainer>
+                        })
+                    }
+                </GridContainer>
             </div>
         </div>
     )

@@ -15,9 +15,10 @@ const useStyles = makeStyles(styles);
 
 const CoinItem = props =>{
     const classes = useStyles();
-    const {name, symbol,type, image, vertical, id}= props;
+    const {name, symbol,type, image, vertical}= props;
     const iconWrapper = classNames({
         [classes.iconWrapper]: true,
+
         [classes.iconWrapperVertical]: vertical
     });
 
@@ -32,15 +33,15 @@ const CoinItem = props =>{
     return(
         <div className={classes.infoArea}>
             <div className={iconWrapper}>
-               {
-                   renderImage(image)
-               }
+                {
+                    renderImage(image)
+                }
             </div>
             <div className={classes.descriptionWrapper}>
                 <h3 className={props.title}>{name}</h3>
                 <p className={classes.description}>Type: {type}</p>
                 <p className={classes.description}>Symbol: {symbol}</p>
-                <Link to={`/all-cryptos/${id}`} >
+                <Link to={`/all-cryptos/${props.id}`} >
                     <Button  size="small"  variant="outlined">See details</Button>
                 </Link>
             </div>

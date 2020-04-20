@@ -23,11 +23,9 @@ const App = props => {
                     <Route exact path='/login' render = { () => <LogIn/>}/>
                     <Route exact path='/signup' render={ () => <SignUp/>}/>
                     <Route exact path='/user-board' render={ () => <ProfilePage/>}/>
-                    <Route exact path='/all-cryptos' render={ () => <CoinsList />}/>
-                    <Route exact path='/all-cryptos/:id' render={ () => <CoinDetail/>}/>
+                    <Route exact path='/all-cryptos' component={CoinsList} />
+                    <Route exact path='/all-cryptos/:id' component={CoinDetail} />
                     <Route exact path='/' component={LandingPage}/>
-
-
 
                 </Switch>
             </div>

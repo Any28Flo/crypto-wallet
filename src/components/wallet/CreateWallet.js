@@ -60,7 +60,7 @@ const CreateWallet = props => {
         updateFormState(Object.assign({}, formState, {[name]: value}));
     };
  return(
-     <GridContainer justify="center">
+     <GridContainer >
              <form onSubmit={handleFormSubmit}>
                  <GridItem xs={12} sm={12} md={12}>
                      <TextField name="walletName" value={formState.walletName} label="Name of your wallet" variant="outlined"  onChange={e => handleChange(e)}/>

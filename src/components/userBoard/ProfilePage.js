@@ -5,7 +5,6 @@ import UserContext from "./../../context"
 import { makeStyles } from "@material-ui/core/styles";
 import profile from "./../../assets/img/erika.jpg";
 import VisibilityIcon from '@material-ui/icons/Visibility';
-
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import GridContainer from "../Grid/GridItem";
@@ -79,9 +78,7 @@ export default function ProfilePage(props) {
                           tabButton: "Buy cryptos",
                           tabIcon:ShoppingCartIcon,
                           tabContent: (
-
-                                    <h1>Hola</h1>
-
+                              <PriceConverter/>
                           )
                         }
                       ]}

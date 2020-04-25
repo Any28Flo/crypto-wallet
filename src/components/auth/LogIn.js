@@ -76,6 +76,7 @@ const LogIn = () => {
 
     const handleChange = (event) => {
         const {name, value} = event.target;
+        console.log(name,value)
         updateFormState(Object.assign({}, formState, {[name]: value}));
     };
 

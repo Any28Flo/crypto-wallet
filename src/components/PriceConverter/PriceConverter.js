@@ -15,6 +15,7 @@ import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import {currencies} from "./../../data/currencies"
 import useDropdown from "./../CustromDropdown/useDropdown"
+import {optionsNav} from "../nav/optionsNav";
 
 
 
@@ -38,14 +39,13 @@ const PriceConverter = props =>{
 
     const [crytos, setCryptos] = useState([]);
 
-    const [crypto , setCrypto] = useState({});
+    const [crypto , setCrypto] = useState('');
 
     const [currencieAmount , setCurrencieAmount] = useState(0);
 
     let [amountBuy , setAmountBuy ] = useState(0);
     let [wallets , setWallets] = useState([]);
-    let [wallet , setWallet]  = useState({name:"Select you wallet", value:[]});
-    let [showWallet, setShowWallet] = useState(true);
+    let [wallet , setWallet]  = useState('');
     const getCryptos  = () =>{
         cryptoService.getCryptos()
             .then(response =>{
@@ -58,8 +58,6 @@ const PriceConverter = props =>{
                 });
                 setCryptos(cryptoNames.slice(0, 5));
             })
-
-
     };
     const getWallets = () => {
         walletService.getAll(user._id)
@@ -87,9 +85,18 @@ const PriceConverter = props =>{
     const setCoin = (e) =>{
         setCrypto(e.target.value);
 
+    };
+    const handleChangeDropdown = e =>{
+        setWallet(e.target.value);
+
+    };
+   const buyCrypto = e =>{
+
+       walletService.buy(crypto,amountBuy,wallet )
+
     }
     return(
-        <GridContainer  justify="center">
+            <GridContainer  justify="center">
             <GridItem xs={12} sm={12} md={12}>
                 <h2>You want to buy {amountBuy} {crypto.name} </h2>
             </GridItem>
@@ -111,14 +118,12 @@ const PriceConverter = props =>{
                             variant="outlined"
                             id="crypto-dropdown"
                             select
-                            style={{display:showWallet ? 'block' : 'none' }}
                             label="Select"
                             value={crypto}
                             onChange={e => setCoin(e)}
                             onBlur={ e => setCoin(e)}
                         >
                             {
-
                                 crytos.map( ({id,name}) =>(
                                     <MenuItem
                                         key={id}
@@ -130,27 +135,46 @@ const PriceConverter = props =>{
                             }
                         </TextField>
                     </FormControl>
-                    <Button color="primary" onClick={priceConvertion}>Calculate</Button>
-                        <TextField
-                            variant="outlined"
-                            select
-                            id="wallets-dropdown"
-                            label="Select"
-                            value= {wallet}
-                            onChange={ e => setWallet(e.target.value)}
-                            >
-                            {
-                                wallets.map( (wallet, id) =>(
+                    <GridContainer  justify="center">
+                        <GridItem xs={12} sm={12} md={12}>
+                            <Button color="primary" onClick={priceConvertion}>Calculate</Button>
 
-                                    <MenuItem
-                                        key={id}
-                                        value={wallet}
-                                    >
-                                        {wallet.name}
-                                    </MenuItem>
-                                ))
-                            }
-                        </TextField>
+                        </GridItem>
+
+
+                    </GridContainer>
+                    <GridContainer>
+                        <GridItem xs={12} sm={12} md={12}>
+                            <TextField
+                                variant="outlined"
+                                id="crypto-dropdown"
+                                select
+                                label="Select"
+                                value={wallet}
+                                onChange={e => handleChangeDropdown(e)}
+                                onBlur={ e =>  handleChangeDropdown(e)}
+                            >
+                                {
+                                    wallets.map(walletString =>{
+                                        return(
+                                            <option key={walletString._id} value={walletString._id}>
+                                                {walletString.name}
+                                            </option>
+                                        )
+                                    })
+                                }
+                            </TextField>
+                        </GridItem>
+
+
+                    </GridContainer>
+                  <GridContainer>
+                      <GridItem xs={12} sm={12} md={12}>
+                          <Button color="primary" onClick={buyCrypto}>Buy</Button>
+
+                      </GridItem>
+                  </GridContainer>
+
 
                 </form>
         </GridContainer>

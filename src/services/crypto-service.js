@@ -16,7 +16,9 @@ class CryptoService{
     converter = (baseCurrencie, cryptoBase, amount) =>{
         let url = `/price-converter?base_currency_id=${baseCurrencie}&quote_currency_id=${cryptoBase}&amount=${amount}`;
         return this.cryptoService.get(url)
-    }
+    };
+
+
 
 
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 class AuthService{
     constructor(){
         let service = axios.create({
-            baseURL :'https://crypto-wallet-serv.herokuapp.com/api',
+            baseURL :`${process.env.REACT_APP_API_URL}`,
             withCredentials: true
         });
         this.service = service;
@@ -18,6 +18,7 @@ class AuthService{
 
     signin = (email, password) => {
 
+        console.log(email,password)
         return this.service.post('/signin', {email, password})
             .then(response => response)
     };

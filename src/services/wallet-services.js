@@ -5,7 +5,7 @@ const accessToken =  localStorage.getItem("token");
 class WalletService{
     constructor() {
         let walletService = axios.create({
-            baseURL: 'http://localhost:5000/api',
+            baseURL: `${process.env.REACT_APP_API_URL}`,
             headers: {'x-access-token': `${accessToken}`}
 
         });
@@ -20,6 +20,13 @@ class WalletService{
 
     getAll = ( createdBy)=>{
         return this.walletService.get('/wallets?createdBy='+createdBy);
+    };
+
+    buy = (idCrypto, amount, walletId) =>{
+        return this.walletService.post('/crypto', {
+            idCrypto,amount,walletId
+        })
+
     }
 
 }

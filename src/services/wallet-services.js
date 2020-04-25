@@ -28,6 +28,10 @@ class WalletService{
         })
 
     }
+    price = (name, price) =>{
+        console.log(name,price);
+        //return this.walletService.post('/price',{name,price})
+    };
 
 }
 

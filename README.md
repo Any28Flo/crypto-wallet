@@ -1,4 +1,4 @@
-![cryptoWallet](./public/images/crypto_wallet%20.png)
+![cryptoWallet](./public/images/crypto_wallet.png)
 # CryptoWallet
 
 ![Node](https://img.shields.io/badge/node-%3E%3D%208.x-brightgreen.svg)

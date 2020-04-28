@@ -31,19 +31,22 @@ const useStyles = makeStyles(styles);
 
 
 const LogIn = () => {
-    const [email, setEmail] = useState('');
-    const [password , setPassword] = useState('');
+    const classes = useStyles();
+
+    const [email, setEmail] = useState("");
+    const [password , setPassword] = useState("");
     const [error, setError] = useState("");
 
     const {setUserData} = useContext(UserContext);
     const history = useHistory();
 
     const MySwal = withReactContent(Swal);
+
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
         setCardAnimation("");
     }, 700);
-    const classes = useStyles();
+
 
 
 
@@ -60,14 +63,14 @@ const LogIn = () => {
            localStorage.setItem("auth-token", loginRes.data.token);
            history.push("/user-board");
         }catch (err) {
+            setEmail("");
+            setPassword("");
             MySwal.fire({
                 icon: 'error',
                 title :'Oops...',
                 text : err.response.data.msg
-
             })
-            setEmail("");
-            setPassword("");
+
 
         }
     };
@@ -92,6 +95,7 @@ const LogIn = () => {
                                             </InputAdornment>
                                         ),
                                     }}
+                                    value={email}
                                     label="Email"
                                     type="email"
                                     onChange={ e => setEmail(e.target.value)}
@@ -106,6 +110,7 @@ const LogIn = () => {
                                             </InputAdornment>
                                         ),
                                     }}
+                                    value={password}
                                     label="Password"
                                     type="password"
                                     autoComplete="current-password"

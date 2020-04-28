@@ -73,8 +73,6 @@ const LogIn = () => {
     };
     return(
         <div className={classes.container}>
-            <small>You are running this application in <b>{process.env.NODE_ENV}</b> mode.</small>
-            <input  defaultValue={process.env.REACT_APP_API_URL} />
 
             <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={4}>

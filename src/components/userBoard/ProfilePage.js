@@ -10,7 +10,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import GridContainer from "../Grid/GridItem";
 import GridItem from "../Grid/GridItem";
 import HeroLayout from "../landingPage/HeroLayout";
-
+import CreateWallet from "../wallet/CreateWallet";
 import NavPills from "../NavPills/NavPills";
 import styles from "./../../assets/jss/material-kit-react/views/profilePage";
 const useStyles = makeStyles(styles);
@@ -58,7 +58,10 @@ export default function ProfilePage(props) {
                       tabs={[
                         {
                           tabButton: "Add Wallet",
-                          tabIcon: AddBoxIcon,
+                          tabIcon: AddBoxIcon, tabContent: (
+                                <CreateWallet/>
+                          )
+
 
                         },
                         {

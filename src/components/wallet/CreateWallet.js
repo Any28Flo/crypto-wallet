@@ -34,7 +34,7 @@ const CreateWallet = props => {
          event.preventDefault();
         const {walletName, description} = formState;
          const coins = [];
-         walletService.create(walletName ,description,coins,user._id )
+         walletService.create(walletName ,description,coins,userData.user.id )
              .then(response =>{
                  if(response.status === 200){
                      Message.fire({

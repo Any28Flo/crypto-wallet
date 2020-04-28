@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const accessToken =  localStorage.getItem("token");
+const accessToken =  localStorage.getItem("auth-token");
 
 class WalletService{
     constructor() {

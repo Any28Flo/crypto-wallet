@@ -34,26 +34,30 @@ const CreateWallet = props => {
          event.preventDefault();
         const {walletName, description} = formState;
          const coins = [];
-         walletService.create(walletName ,description,coins,userData.user.id )
-             .then(response =>{
-                 if(response.status === 200){
-                     Message.fire({
-                         icon: 'success',
-                         title :'Yay!',
-                         text : 'You did it'
+         console.log(walletName);
+         console.log(description);
+         console.log(coins);
+         console.log(userData.user.id);
+                walletService.create(walletName ,description,coins,userData.user.id )
+                     .then(response =>{
+                         if(response.status === 200){
+                             Message.fire({
+                                 icon: 'success',
+                                 title :'Yay!',
+                                 text : 'You did it'
 
-                     });
-                    updateFormState({walletName: "", description: ""})
-                 }
-             })
-             .catch(e =>{
-                 updateFormState({walletName: "", description: ""})
-                 Message.fire({
-                     icon: 'error',
-                     title :'Oops...',
-                     text : 'Warning creating you new wallet, please try again'
-                 })
-             })
+                             });
+                            updateFormState({walletName: "", description: ""})
+                         }
+                     })
+                     .catch(e =>{
+                         updateFormState({walletName: "", description: ""})
+                         Message.fire({
+                             icon: 'error',
+                             title :'Oops...',
+                             text : e.response.data.msg
+                         })
+                     })
      };
 
     const handleChange = (event) => {

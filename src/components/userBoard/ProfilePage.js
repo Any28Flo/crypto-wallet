@@ -9,12 +9,9 @@ import AddBoxIcon from '@material-ui/icons/AddBox';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import GridContainer from "../Grid/GridItem";
 import GridItem from "../Grid/GridItem";
-import Button from "./../CustomButtons/Button";
 import HeroLayout from "../landingPage/HeroLayout";
-import Wallets from "./../wallet/Wallets";
-import CreateWallet from './../wallet/CreateWallet'
+
 import NavPills from "../NavPills/NavPills";
-import PriceConverter from "../PriceConverter/PriceConverter";
 import styles from "./../../assets/jss/material-kit-react/views/profilePage";
 const useStyles = makeStyles(styles);
 
@@ -24,13 +21,11 @@ export default function ProfilePage(props) {
   const classes = useStyles();
   const {userData} = useContext(UserContext);
 
-  const { ...rest } = props;
   const imageClasses = classNames(
     classes.imgRaised,
     classes.imgRoundedCircle,
     classes.imgFluid
   );
-  const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
     <div>
 
@@ -45,7 +40,7 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h2 className={classes.title}> {userData.user.displayName}</h2>
+                    <h2 className={classes.title}>Welcome  {userData.user.username}</h2>
                     <h3>Total: : <span>$150.20</span></h3>
 
                   </div>
@@ -64,23 +59,17 @@ export default function ProfilePage(props) {
                         {
                           tabButton: "Add Wallet",
                           tabIcon: AddBoxIcon,
-                          tabContent: (
-                                <CreateWallet/>
-                          )
+
                         },
                         {
                           tabButton: "See your wallets",
                           tabIcon: VisibilityIcon ,
-                          tabContent: (
-                              <Wallets/>
-                          )
+
                         },
                         {
                           tabButton: "Buy cryptos",
                           tabIcon:ShoppingCartIcon,
-                          tabContent: (
-                              <PriceConverter/>
-                          )
+
                         }
                       ]}
                   />

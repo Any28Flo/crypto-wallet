@@ -1,7 +1,8 @@
 import React, {useContext, useState} from "react";
 
 import { makeStyles } from '@material-ui/core/styles';
-import UserContext from "./../../context"
+import {UserContext} from "../../context/userContext";
+
 import TextField from "@material-ui/core/TextField"
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
@@ -20,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateWallet = props => {
     const classes = useStyles();
-    const [user, setUser] = useContext(UserContext);
+    const { userData } = useContext(UserContext);
+
     const walletService = new WalletService();
     const Message = withReactContent(Swal);
     const [formState,  updateFormState] = useState({

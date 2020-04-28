@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import {UserContext }from "./context/userContext"
 
 import LandingPage from "./components/landingPage/LandingPage";
+import ProfilePage from "./components/userBoard/ProfilePage";
 import LogIn from "./components/auth/LogIn";
 import Footer from "./components/Footer/Footer"
 import Nav from "./components/nav/Nav"
@@ -23,6 +24,7 @@ const App = props => {
                 <Switch>
                     <Route exact path='/' component={LandingPage}/>
                     <Route exact path='/login' component={LogIn}/>
+                    <Route exact path='/user-board' render={ () => <ProfilePage/>}/>
 
                 </Switch>
                 <Footer/>

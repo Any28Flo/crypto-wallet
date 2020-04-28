@@ -1,6 +1,6 @@
 import React , {useContext } from 'react'
 import classNames from "classnames";
-import UserContext from "./../../context"
+import {UserContext} from "../../context/userContext";
 
 import { makeStyles } from "@material-ui/core/styles";
 import profile from "./../../assets/img/erika.jpg";
@@ -22,7 +22,8 @@ const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
   const classes = useStyles();
-  const [user, setUser] = useContext(UserContext);
+  const {userData} = useContext(UserContext);
+
   const { ...rest } = props;
   const imageClasses = classNames(
     classes.imgRaised,
@@ -33,7 +34,7 @@ export default function ProfilePage(props) {
   return (
     <div>
 
-      <HeroLayout small filter  image={require("./../../assets/img/profile-bg.jpg")} />
+        <HeroLayout small filter  image={require("./../../assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
           <div className={classes.container}>
@@ -44,7 +45,7 @@ export default function ProfilePage(props) {
                     <img src={profile} alt="..." className={imageClasses} />
                   </div>
                   <div className={classes.name}>
-                    <h2 className={classes.title}> {user.username}</h2>
+                    <h2 className={classes.title}> {userData.user.displayName}</h2>
                     <h3>Total: : <span>$150.20</span></h3>
 
                   </div>

@@ -26,16 +26,10 @@ const Nav = () =>{
             <AppBar position="fixed">
                 <Toolbar>
                     <Link to="/">
-                        <Typography variant="h6" className={classes.title}>
-                            Crypto Wallet
-                        </Typography>
+                        <img src="./images/crypto_wallet.png" alt="crypto-wallet icon"
+                             style={{ width: '25%', height: 75 }}
+                        />
                     </Link>
-
-                    <Link to="/login">
-                        <Button color="inherit">Login</Button>
-
-                    </Link>
-
                 </Toolbar>
             </AppBar>
             <div className={classes.toolbarMargin} />

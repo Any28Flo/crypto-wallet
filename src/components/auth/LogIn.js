@@ -66,6 +66,8 @@ const LogIn = () => {
                 text : err.response.data.msg
 
             })
+            setEmail("");
+            setPassword("");
 
         }
     };

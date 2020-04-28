@@ -56,20 +56,17 @@ const LogIn = () => {
         event.preventDefault();
         try{
            const loginRes = await service.signin(email, password);
-           setUserData({
-               token: loginRes.data.token,
-               user: loginRes.data.user
-           });
-           localStorage.setItem("auth-token", loginRes.data.token);
-           history.push("/user-board");
+
+                setUserData({
+                    token: loginRes.data.token,
+                    user: loginRes.data.user
+                });
+                localStorage.setItem("auth-token", loginRes.data.token);
+                history.push("/user-board");
+
         }catch (err) {
-            setEmail("");
-            setPassword("");
-            MySwal.fire({
-                icon: 'error',
-                title :'Oops...',
-                text : err.response.data.msg
-            })
+         //   err.response.data.msg && setError(err.response.data.msg);
+
 
 
         }

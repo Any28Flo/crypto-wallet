@@ -28,7 +28,7 @@ const  FullWidthGrid = () => {
                                 Buy and sell popular digital currencies, keep track of them in the one place.
                             </h3>
                             <br />
-                            <Link to="/login">
+                                <Link to="/login">
                                 <Button
                                     className={"buttonGradient"}
                                     color="primary"

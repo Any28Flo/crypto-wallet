@@ -60,7 +60,13 @@ const LogIn = () => {
            localStorage.setItem("auth-token", loginRes.data.token);
            history.push("/user-board");
         }catch (err) {
-            console.log(err);
+            MySwal.fire({
+                icon: 'error',
+                title :'Oops...',
+                text : err.response.data.msg
+
+            })
+
         }
     };
     return(

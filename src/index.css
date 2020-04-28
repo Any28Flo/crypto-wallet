@@ -47,3 +47,23 @@ nav{
   margin-bottom: 10px;
   color: #495057;
 }
+
+/* error notice */
+
+.errorNotice {
+  margin: 1rem 0;
+  border: 1px solid #e9a4a4;
+  border-radius: 8px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fbdada;
+}
+.errorNotice button {
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  background-color: #ca1d1d;
+  color: #ffffff;
+}

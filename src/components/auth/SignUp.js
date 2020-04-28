@@ -80,7 +80,7 @@ const SignUp = () => {
                 MySwal.fire({
                     icon: 'error',
                     title :'Oops...',
-                    text : 'Error sign up  in please try again'
+                    text : 'Warning sign up  in please try again'
 
                 })
 

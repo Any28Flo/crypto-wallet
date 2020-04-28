@@ -1,7 +1,8 @@
 import React, { useState, useContext} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import UserContext from "./../../context"
+import {UserContext} from "../../context/userContext";
+import ErrorNotice from "../Warning/ErrorNotice";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,10 +31,14 @@ const useStyles = makeStyles(styles);
 
 
 const LogIn = () => {
+    const [email, setEmail] = useState('');
+    const [password , setPassword] = useState('');
+    const [error, setError] = useState("");
+
+    const {setUserData} = useContext(UserContext);
+    const history = useHistory();
 
     const MySwal = withReactContent(Swal);
-    const history = useHistory();
-    const [user,setUser] = useContext(UserContext);
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function() {
         setCardAnimation("");
@@ -42,49 +47,28 @@ const LogIn = () => {
 
 
 
-    const [ formState, updateFormState ] = useState (
-        { email: '', password: '' }
-    );
     const service = new AuthService();
 
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
-        const email = formState.email;
-        const password = formState.password;
-        service.signin(email, password)
-            .then( response => {
-                if(response.status === 200){
-                    window.localStorage.token =response.data.token;
-
-                    const {username,email,image,_id} = response.data.user;
-                    const newUser= {username,email,image,_id};
-                    setUser(newUser);
-                    updateFormState({ email: "", password: "" });
-                    history.push("/user-board")
-                }
-            })
-            .catch( error => {
-                updateFormState({ email: "", password: ""});
-                MySwal.fire({
-                    icon: 'error',
-                    title :'Oops...',
-                    text : 'Error logging in please try again'
-
-                })
-            } )
+        try{
+           const loginRes = await service.signin(email, password);
+           setUserData({
+               token: loginRes.data.token,
+               user: loginRes.data.user
+           });
+           localStorage.setItem("auth-token", loginRes.data.token);
+           history.push("/user-board");
+        }catch (err) {
+            console.log(err);
+        }
     };
-
-    const handleChange = (event) => {
-        const {name, value} = event.target;
-        console.log(name,value)
-        updateFormState(Object.assign({}, formState, {[name]: value}));
-    };
-
     return(
         <div className={classes.container}>
             <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={4}>
                     <Card className={classes[cardAnimaton]}>
+                        {error & <ErrorNotice error={error} clearError={ () => setError("")}/>}
                         <form className={classes.form} onSubmit={handleFormSubmit}>
                             <CardHeader color="primary" className={classes.cardHeader}>
                                 <h4>Login</h4>
@@ -102,8 +86,7 @@ const LogIn = () => {
                                     }}
                                     label="Email"
                                     type="email"
-                                    value={formState.email}
-                                    onChange={ e => handleChange(e)}
+                                    onChange={ e => setEmail(e.target.value)}
                                 />
 
                                 <TextField
@@ -118,8 +101,7 @@ const LogIn = () => {
                                     label="Password"
                                     type="password"
                                     autoComplete="current-password"
-                                    value={formState.password}
-                                    onChange={ e => handleChange(e)}
+                                    onChange={ e => setPassword(e.target.value)}
                                 />
 
 

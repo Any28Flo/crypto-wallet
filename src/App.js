@@ -1,25 +1,29 @@
 import React, { useState} from 'react';
 import { Switch, Route } from 'react-router-dom';
+import {UserContext }from "./context/userContext"
 
-import UserContext from "./context"
 import LandingPage from "./components/landingPage/LandingPage";
 import LogIn from "./components/auth/LogIn";
 import Footer from "./components/Footer/Footer"
 import Nav from "./components/nav/Nav"
-
 import './App.css';
 
 
 const App = props => {
-    const userHook = useState({user:null});
+    const [userData, setUserData] = useState({
+        token: undefined,
+        user: undefined
+    });
+
 
     return (
-        <UserContext.Provider value={userHook}>
+        <UserContext.Provider value={{userData,setUserData}}>
             <div className="App">
                 <Nav/>
                 <Switch>
                     <Route exact path='/' component={LandingPage}/>
                     <Route exact path='/login' component={LogIn}/>
+
                 </Switch>
                 <Footer/>
             </div>

@@ -49,7 +49,7 @@ const CreateWallet = props => {
                  Message.fire({
                      icon: 'error',
                      title :'Oops...',
-                     text : 'Error creating you new wallet, please try again'
+                     text : 'Warning creating you new wallet, please try again'
                  })
              })
      };

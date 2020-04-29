@@ -30,7 +30,7 @@ const Nav = () =>{
         const checkUserLoggedIn = async () => {
             const accessToken =  localStorage.getItem("auth-token");
             const tokenRes = await Axios.post(
-                "http://localhost:5000/api/tokenIsValid",
+                `${process.env.REACT_APP_API_URL}/tokenIsValid`,
                 null,
                 {
                     headers: {

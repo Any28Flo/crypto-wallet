@@ -45,6 +45,8 @@ const Nav = () =>{
     }, [userData]);
     const register = () => history.push("/signup");
     const login = () => history.push("/login");
+    const allCryptos = () => history.push("all-cryptos");
+    const profile = () => history.push("user-board");
     const logOut = () => {
         setUserData({
             token: undefined,
@@ -65,8 +67,14 @@ const Nav = () =>{
                     </Link>
                     <div className="auth-options">
                         {loggedIn ? (
-                            <Button variant="contained"> onClick={logOut}>Log out</Button>
-                        ) : (
+                            <>
+
+                                <Button variant="contained" onClick={profile}>My Profile</Button>
+                                <Button variant="contained" onClick={allCryptos}>Crypto List</Button>
+                                <Button variant="contained" onClick={logOut}>Log out</Button>
+                            </>
+
+                            ) : (
                             <>
                                 <Button variant="contained" onClick={register}>Register</Button>
                                 <Button variant="contained" onClick={login}>Log in</Button>

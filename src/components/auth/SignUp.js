@@ -1,8 +1,7 @@
 
 import React, { useState, useContext } from 'react';
 import AuthService from '../../services/auth-service';
-import UserContext from "./../../context"
-
+import {UserContext} from "../../context/userContext";
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import {TextField } from '@material-ui/core';
@@ -44,24 +43,23 @@ const SignUp = () => {
     const [ formState, updateFormState ] = useState({ username: '', password: '', email : '' ,image : '' });
     const service = new AuthService();
 
-    const [user,setUser] = useContext(UserContext);
+    const {setUserData} = useContext(UserContext);
+
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        const username = formState.username;
-        const password = formState.password;
-        const email = formState.email;
-        const image = formState.image;
+        const {username, password, email, image} = formState;
 
         service.signup(username, password, email, image)
 
             .then( response => {
                 console.log(response)
                 if(response.status === 200){
-                    console.log("Yeii")
-                    const {username,email,image} = response.data.newUser;
-                    const newUser = {username,email,image};
-                    setUser(newUser);
+
+                    setUserData({
+                        token: response.data.token,
+                        user: response.data.user
+                    });
                     updateFormState({ username: "",
                         password: "",
                         email: "",

@@ -85,6 +85,7 @@ const LogIn = () => {
                             </CardHeader>
                             <CardBody>
                                 <TextField
+                                    className={classes.input}
                                     name="email"
                                     InputProps={{
                                         startAdornment: (
@@ -100,6 +101,7 @@ const LogIn = () => {
                                 />
 
                                 <TextField
+                                    className={classes.input}
                                     name="password"
                                     InputProps={{
                                         startAdornment: (

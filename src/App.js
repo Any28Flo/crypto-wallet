@@ -8,6 +8,7 @@ import LogIn from "./components/auth/LogIn";
 import Footer from "./components/Footer/Footer"
 import Nav from "./components/nav/Nav"
 import './App.css';
+import SignUp from "./components/auth/SignUp";
 
 
 const App = props => {
@@ -24,6 +25,7 @@ const App = props => {
                 <Switch>
                     <Route exact path='/' component={LandingPage}/>
                     <Route exact path='/login' component={LogIn}/>
+                    <Route exact path='/signup' component={SignUp}/>
                     <Route exact path='/user-board' render={ () => <ProfilePage/>}/>
 
                 </Switch>

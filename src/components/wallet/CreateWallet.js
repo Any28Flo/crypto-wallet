@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(1),
     },
+    paddingTextField :{
+        paddingTop: "3em"
+    }
 }));
 
 
@@ -34,10 +37,6 @@ const CreateWallet = props => {
          event.preventDefault();
         const {walletName, description} = formState;
          const coins = [];
-         console.log(walletName);
-         console.log(description);
-         console.log(coins);
-         console.log(userData.user.id);
                 walletService.create(walletName ,description,coins,userData.user.id )
                      .then(response =>{
                          if(response.status === 200){
@@ -45,7 +44,6 @@ const CreateWallet = props => {
                                  icon: 'success',
                                  title :'Yay!',
                                  text : 'You did it'
-
                              });
                             updateFormState({walletName: "", description: ""})
                          }
@@ -69,11 +67,11 @@ const CreateWallet = props => {
      <GridContainer >
              <form onSubmit={handleFormSubmit}>
                  <GridItem xs={12} sm={12} md={12}>
-                     <TextField name="walletName" value={formState.walletName} label="Name of your wallet" variant="outlined"  onChange={e => handleChange(e)}/>
+                     <TextField   className={classes.paddingTextField} name="walletName" value={formState.walletName} label="Name of your wallet" variant="outlined"  onChange={e => handleChange(e)}/>
 
                  </GridItem>
                  <GridItem xs={12} sm={12} md={12}>
-                     <TextField name="description" value={formState.description} label = "Description"  variant="outlined" onChange={ e=> handleChange(e)}/>
+                     <TextField  className={classes.paddingTextField} name="description" value={formState.description} label = "Description"  variant="outlined" onChange={ e=> handleChange(e)}/>
                  </GridItem>
                  <Button
                      variant="contained"

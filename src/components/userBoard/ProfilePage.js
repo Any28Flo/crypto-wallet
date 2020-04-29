@@ -12,6 +12,7 @@ import GridItem from "../Grid/GridItem";
 import HeroLayout from "../landingPage/HeroLayout";
 import CreateWallet from "../wallet/CreateWallet";
 import NavPills from "../NavPills/NavPills";
+import PriceConverter from "../PriceConverter/PriceConverter";
 import styles from "./../../assets/jss/material-kit-react/views/profilePage";
 import Wallets from "../wallet/Wallets";
 const useStyles = makeStyles(styles);
@@ -77,6 +78,9 @@ export default function ProfilePage(props) {
                         {
                           tabButton: "Buy cryptos",
                           tabIcon:ShoppingCartIcon,
+                          tabContent:(
+                              <PriceConverter/>
+                          )
 
                         }
                       ]}

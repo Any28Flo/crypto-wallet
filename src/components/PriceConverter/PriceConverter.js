@@ -1,9 +1,8 @@
 import React, {useState, useEffect, useContext} from "react";
 import CryptoService from "../../services/crypto-service";
 import WalletService from "../../services/wallet-services";
-import UserContext from "./../../context"
 import { makeStyles } from '@material-ui/core/styles';
-
+import {UserContext} from "../../context/userContext";
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -16,7 +15,8 @@ import GridContainer from "../Grid/GridContainer";
 import {currencies} from "./../../data/currencies"
 import useDropdown from "./../CustromDropdown/useDropdown"
 import {optionsNav} from "../nav/optionsNav";
-
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +33,7 @@ const PriceConverter = props =>{
     const cryptoService = new CryptoService();
     const walletService = new WalletService();
     const classes = useStyles();
-    const [user, setUser] = useContext(UserContext);
+    const {userData} = useContext(UserContext);
 
     const [currency, CurrencyDropdown] = useDropdown("USD DOLLARS" , "usd-us-dollars", currencies );
 
@@ -47,6 +47,9 @@ const PriceConverter = props =>{
     let [amountBuy , setAmountBuy ] = useState(0);
     let [wallets , setWallets] = useState([]);
     let [wallet , setWallet]  = useState('');
+
+    const Message = withReactContent(Swal);
+
     const getCryptos  = () =>{
         cryptoService.getCryptos()
             .then(response =>{
@@ -61,7 +64,7 @@ const PriceConverter = props =>{
             })
     };
     const getWallets = () => {
-        walletService.getAll(user._id)
+        walletService.getAll(userData.user.id)
             .then(response =>{
                 setWallets(response.data.wallets)
             })
@@ -80,21 +83,19 @@ const PriceConverter = props =>{
 
         cryptoService.converter(currency, crypto, currencieAmount)
             .then(response =>{
-                console.log(response.data)
                 setName(response.data.quote_currency_name);
                 setPrice(response.data.price);
                  setAmountBuy(response.data.price.toFixed(5));
             })
-        displayCoin()
 
-    }
-    const displayCoin = ()=>{
-        walletService.price(name,price)
-            .then(response =>{
-                console.log("Sucess")
-            })
 
-    }
+    };
+    const updateFormState = () =>{
+        setCrypto('');
+        setCurrencieAmount(0);
+
+    };
+
 
     const setCoin = (e) =>{
         setCrypto(e.target.value);
@@ -104,11 +105,21 @@ const PriceConverter = props =>{
         setWallet(e.target.value);
 
     };
-   const buyCrypto = e =>{
+   const buyCrypto =  (e) =>{
 
-       walletService.buy(crypto,amountBuy,wallet )
+      walletService.buy(crypto,amountBuy,wallet )
+          .then(response => {
+              if(response.status === 200){
+                  Message.fire({
+                      icon: 'success',
+                      title : 'Yay!',
+                      text : "You did it "
+                  });
+                  updateFormState();
+              }
+          })
 
-    }
+    };
     return(
             <GridContainer  justify="center">
             <GridItem xs={12} sm={12} md={12}>
@@ -122,7 +133,6 @@ const PriceConverter = props =>{
                         <Input
                             id="standard-adornment-amount"
                             value={currencieAmount}
-                            defaultValue={0}
                             onChange={e => setCurrencieAmount(e.target.value)}
 
                             startAdornment={<InputAdornment position="start">$</InputAdornment>}

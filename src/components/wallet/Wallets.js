@@ -3,6 +3,7 @@ import {UserContext} from "../../context/userContext";
 import WalletService from "../../services/wallet-services";
 import GridItem from "../Grid/GridItem";
 import WalletCard from "./../Card/WalletCard"
+import Axios from "axios";
 const Wallets = () =>{
 
     const {userData} = useContext(UserContext);
@@ -11,11 +12,14 @@ const Wallets = () =>{
 
 
     useEffect( ()=>{
-        walletService.getAll(userData.user.id)
-            .then(response =>{
-                console.log(response.data.wallets);
-                setWallets(response.data.wallets);
-            })
+        const getWallets = async ()=>{
+            const accessToken =  localStorage.getItem("auth-token");
+            const wallet = await  Axios.get(`${process.env.REACT_APP_API_URL}/wallets?createdBy=${userData.user.id}`,{    headers: {
+                    "x-access-token":  `${accessToken}`
+                },});
+            setWallets(wallet.data.wallets);
+        }
+    getWallets();
     }, []);
 
     return(

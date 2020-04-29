@@ -53,7 +53,6 @@ const SignUp = () => {
         service.signup(username, password, email, image)
 
             .then( response => {
-                console.log(response)
                 if(response.status === 200){
 
                     setUserData({
@@ -79,7 +78,7 @@ const SignUp = () => {
                 MySwal.fire({
                     icon: 'error',
                     title :'Oops...',
-                    text : 'Warning sign up  in please try again'
+                    text : error.response.data.msg
 
                 })
 

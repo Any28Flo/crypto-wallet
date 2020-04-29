@@ -76,7 +76,6 @@ const CoinsList = () => {
                 <GridContainer justify="center">
                     {
                         coins.map( (coin, index ) =>{
-                            console.log(coin);
                             return(
                                 <GridItem key={coin.id} xs={12} sm={6} md={4}>
                                     <LazyLoad key ={coin.id} placeholder={<Loading/>}>

@@ -13,6 +13,7 @@ import HeroLayout from "../landingPage/HeroLayout";
 import CreateWallet from "../wallet/CreateWallet";
 import NavPills from "../NavPills/NavPills";
 import styles from "./../../assets/jss/material-kit-react/views/profilePage";
+import Wallets from "../wallet/Wallets";
 const useStyles = makeStyles(styles);
 
 
@@ -58,7 +59,8 @@ export default function ProfilePage(props) {
                       tabs={[
                         {
                           tabButton: "Add Wallet",
-                          tabIcon: AddBoxIcon, tabContent: (
+                          tabIcon: AddBoxIcon,
+                          tabContent: (
                                 <CreateWallet/>
                           )
 
@@ -67,6 +69,9 @@ export default function ProfilePage(props) {
                         {
                           tabButton: "See your wallets",
                           tabIcon: VisibilityIcon ,
+                          tabContent: (
+                               <Wallets/>
+                          )
 
                         },
                         {

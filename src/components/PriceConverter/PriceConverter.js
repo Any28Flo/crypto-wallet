@@ -93,6 +93,7 @@ const PriceConverter = props =>{
     const updateFormState = () =>{
         setCrypto('');
         setCurrencieAmount(0);
+        setWallet('');
 
     };
 

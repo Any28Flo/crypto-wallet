@@ -64,6 +64,7 @@ const SignUp = () => {
                         password: "",
                         email: "",
                         image: ""});
+                    localStorage.setItem("auth-token", response.data.token);
 
                     history.push('/user-board');
 

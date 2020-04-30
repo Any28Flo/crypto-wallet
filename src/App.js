@@ -9,6 +9,7 @@ import CoinsList from "./components/coinsList/CoinsList";
 import CoinDetail from "./components/coinDetail/CoinDetail";
 import Footer from "./components/Footer/Footer"
 import Nav from "./components/nav/Nav"
+import NavBar from "./components/nav/NavBar";
 import './App.css';
 import SignUp from "./components/auth/SignUp";
 
@@ -23,7 +24,8 @@ const App = props => {
     return (
         <UserContext.Provider value={{userData,setUserData}}>
             <div className="App">
-                <Nav/>
+
+                <NavBar/>
                 <Switch>
                     <Route exact path='/' component={LandingPage}/>
                     <Route exact path='/login' component={LogIn}/>

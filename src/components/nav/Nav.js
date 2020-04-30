@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react'
 import {Link, useHistory} from 'react-router-dom'
 import {makeStyles} from "@material-ui/core";
-import {AppBar,Toolbar, Button} from "@material-ui/core";
+import {AppBar,Toolbar, Button , IconButton} from "@material-ui/core";
 import {UserContext} from "../../context/userContext";
 import Axios from "axios";
 
@@ -61,9 +61,12 @@ const Nav = () =>{
             <AppBar position="fixed">
                 <Toolbar>
                     <Link to="/">
-                        <img src="./images/crypto_wallet.png" alt="crypto-wallet icon"
-                             style={{ width: '25%', height: 75 }}
-                        />
+                        <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                            <img src="./images/crypto_wallet.png" alt="crypto-wallet icon"
+                                 style={{ width: '25%', height: 75 }}
+                            />
+                        </IconButton>
+
                     </Link>
                     <div className="auth-options">
                         {loggedIn ? (
@@ -76,6 +79,7 @@ const Nav = () =>{
 
                             ) : (
                             <>
+                                <Button color="inherit">Login</Button>
                                 <Button variant="contained" onClick={register}>Register</Button>
                                 <Button variant="contained" onClick={login}>Log in</Button>
                             </>

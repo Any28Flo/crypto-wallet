@@ -11,12 +11,11 @@
 You need to have installed > NodeJS 8.x and NPM.
 
 ## Built With ❤
-
-* [NodeJS](https://nodejs.org/en/) - The technology used
-* [REACT](https://reactjs.org/) - The technology used
-
-
-
+### Front-End
+ 
+* [REACT](https://reactjs.org/)
+* [MATERIAL-UI](https://material-ui.com/)
+ 
 ## Author
 
 * **Analin Flores** - - [Any28Flo](https://github.com/Any28Flo)
@@ -28,6 +27,5 @@ This project is licensed under the MIT License
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
 * Inspiration
 * Our TA's (Raul, Kain, JP)

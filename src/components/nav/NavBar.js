@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState} from "react"
 import { makeStyles } from "@material-ui/core/styles";
-import {Link, useHistory} from 'react-router-dom'
+import { useHistory} from 'react-router-dom'
 
 import Header from "../Header/Header";
 import AccountCircle from "@material-ui/icons/AccountCircle";

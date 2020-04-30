@@ -52,24 +52,32 @@ const LogIn = () => {
 
     const service = new AuthService();
 
-    const handleFormSubmit = async (event) => {
+    const handleFormSubmit =  (event) => {
         event.preventDefault();
-        try{
-           const loginRes = await service.signin(email, password);
 
+        service.signin(email, password)
+        .then(response =>{
+            if(response.status === 200){
                 setUserData({
-                    token: loginRes.data.token,
-                    user: loginRes.data.user
+                    token: response.data.token,
+                    user: response.data.user
                 });
-                localStorage.setItem("auth-token", loginRes.data.token);
+                localStorage.setItem("auth-token", response.data.token);
                 history.push("/user-board");
+            }
+        }).catch(e => {
+            setEmail('');
+            setPassword('');
+            MySwal.fire({
+                icon: 'error',
+                title :'Oops...',
+                text : e.response.data.msg
+            })
+        })
 
-        }catch (err) {
-         //   err.response.data.msg && setError(err.response.data.msg);
 
 
 
-        }
     };
     return(
         <div className={classes.container}>

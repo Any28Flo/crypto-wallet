@@ -14,7 +14,6 @@ import GridItem from "../Grid/GridItem";
 import GridContainer from "../Grid/GridContainer";
 import {currencies} from "./../../data/currencies"
 import useDropdown from "./../CustromDropdown/useDropdown"
-import {optionsNav} from "../nav/optionsNav";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 

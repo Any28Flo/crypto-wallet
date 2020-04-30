@@ -59,17 +59,13 @@ const SignUp = () => {
                         token: response.data.token,
                         user: response.data.user
                     });
-                    updateFormState({ username: "",
-                        password: "",
-                        email: "",
-                        image: ""});
+
                     localStorage.setItem("auth-token", response.data.token);
 
                     history.push('/user-board');
 
                 }
-            })
-            .catch( error => {
+            }).catch( e => {
                 updateFormState({ username: "",
                     password: "",
                     email: "",
@@ -78,7 +74,7 @@ const SignUp = () => {
                 MySwal.fire({
                     icon: 'error',
                     title :'Oops...',
-                    text : error.response.data.msg
+                    text : e.response.data.msg
 
                 })
 
@@ -169,29 +165,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
-/*
-
-return(
-
-     <div>
-         <form onSubmit={handleFormSubmit}>
-             <label>Username:</label>
-             <input type="text" name="username" value={formState.username} onChange={ e => handleChange(e)}/>
-
-             <label>Password:</label>
-             <input name="password" type="password" value={formState.password} onChange={ e => handleChange(e)} />
-
-             <label>Email:</label>
-             <input name="email" type="email" value={formState.email} onChange={ e => handleChange(e)} />
-
-             <label>Image:</label>
-             <input name="image" type="text" value="image_01.png" onChange={ e => handleChange(e)} />
-
-
-             <input type="submit" value="Signup" />
-         </form>
-
-
-     </div>
-)*/
